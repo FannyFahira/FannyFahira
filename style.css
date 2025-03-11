@@ -32,6 +32,8 @@ header {
 header h1 {
   border:1px solid;
   float: left;
+  padding:15px 0;
+  color: #6D7993;
 }
 header ul {
   border:1px solid;
@@ -42,4 +44,8 @@ header ul li {
 }
 header ul li a {
   padding:25px 20px;
+  display: inline-block;
+}
+header ul li a:hover {
+  background-color: #6D7993;
 }
