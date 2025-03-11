@@ -40,3 +40,6 @@ header ul {
 header ul li {
   display: inline-block;
 }
+header ul li a {
+  padding:25px 20px;
+}
