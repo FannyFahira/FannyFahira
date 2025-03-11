@@ -49,8 +49,6 @@ header ul li a:hover {
   color: #fff;
 }
 .banner {
-  height: 60vh;
+  height: 70vh;
   border:1px solid;
-  background-image: url('banner.jpg');
-  background-size: cover;
 }
