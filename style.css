@@ -3,7 +3,14 @@
   margin:0;
   font-family: sans-serif;
 }
+a {
+  color: inherit;
+}
 .medsos {
   padding:5px 0;
   background-color: #6D7993;  
+}
+.medsos ul li {
+  display: inline-block;
+  color: #fff;
 }
