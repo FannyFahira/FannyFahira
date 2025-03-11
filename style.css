@@ -19,24 +19,18 @@ a {
 .container {
   width:80%;
   margin:0 auto;
-  border:1px solid;
 }
 .container:after {
   content:'';
   display: block;
   clear: both;
 }
-header {
-  border:1px solid;
-}
 header h1 {
-  border:1px solid;
   float: left;
   padding:15px 0;
   color: #6D7993;
 }
 header ul {
-  border:1px solid;
   float: right;
 }
 header ul li {
