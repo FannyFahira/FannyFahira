@@ -21,6 +21,11 @@ a {
   margin:0 auto;
   border:1px solid;
 }
+.container:after {
+  content:'';
+  display: block;
+  clear: both;
+}
 header {
   border:1px solid;
 }
