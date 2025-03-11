@@ -37,3 +37,6 @@ header ul {
   border:1px solid;
   float: right;
 }
+header ul li {
+  display: inline-block;
+}
