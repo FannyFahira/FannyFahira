@@ -19,6 +19,7 @@ a {
 .container {
   width:80%;
   margin:0 auto;
+  border:1px solid;
 }
 header {
   border:1px solid;
