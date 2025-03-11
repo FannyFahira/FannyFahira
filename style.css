@@ -76,3 +76,8 @@ header ul li a:hover {
 section {
 	padding:50px 0;
 } 
+section h3 {
+	text-align: center;
+	padding:20px 0;
+	color: #6D7993;
+}
