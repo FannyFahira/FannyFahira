@@ -53,4 +53,5 @@ header ul li a:hover {
   border:1px solid;
   background-image: url('banner.jpg');
   background-size: cover;
+  object-fit: cover;
 }
