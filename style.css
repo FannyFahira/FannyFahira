@@ -54,6 +54,9 @@ header ul li a:hover {
   background-image: url('banner.jpg');
   background-size: cover;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .banner:after {
   content:'';
@@ -65,3 +68,6 @@ header ul li a:hover {
   bottom: 0;
   background-color: rgba(109, 121, 147, .6);
 }
+section {
+	padding:50px 0;
+} 
