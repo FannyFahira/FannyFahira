@@ -82,7 +82,8 @@ section h3 {
 	color: #6D7993;
 	margin-bottom: 20px;
 }
-.about {
+.about,
+.contact {
 	padding-bottom: 100px;
 }
 .about p {
