@@ -48,4 +48,9 @@ header ul li a {
 }
 header ul li a:hover {
   background-color: #6D7993;
+  color: #fff;
+}
+.active {
+  background-color: #6D7993;
+  color: #fff;
 }
