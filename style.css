@@ -118,6 +118,10 @@ footer {
 	border-bottom-color: #6D7993;
 	animation: puterin 5s linear infinite;
 }
+.label {
+	background-color: #6D7993;
+	color: #fff;
+}
 @keyframes puterin {
 	100% {
 		transform: rotate(360deg);
