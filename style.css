@@ -80,4 +80,10 @@ section h3 {
 	text-align: center;
 	padding:20px 0;
 	color: #6D7993;
+	margin-bottom: 20px;
+}
+.about p {
+	color: #666;
+	word-spacing: 2px;
+	line-height: 25px;
 }
