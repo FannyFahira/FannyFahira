@@ -90,6 +90,8 @@ section h3 {
 	color: #666;
 	word-spacing: 2px;
 	line-height: 25px;
+	margin-bottom: 20px;
+	text-align: center;
 }
 footer {
 	padding: 30px 0;
@@ -135,5 +137,14 @@ footer {
 	header h1 {
 		text-align: center;
 		float: none;
+	}
+	header ul {
+		text-align: center;
+		float: none;
+	}
+	.box .col-4 {
+		width:100%;
+		float: none;
+		margin-bottom: 20px;
 	}
 }
