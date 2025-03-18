@@ -124,22 +124,19 @@
 	<!-- gif -->
 	<img src="gambar.gif" alt="Animasi GIF" class="gif-pojok">
 
-	<!-- Overlay dan Popup -->
+	<!-- Overlay and Popup -->
     	<div class="overlay" id="welcomePopup">
         	<div class="popup">
             		<h2>Selamat Datang!</h2>
-            		<p>Terima kasih telah mengunjungi website kami.</p>
-            		<button class="close-btn" onclick="closePopup()">Tutup</button>
+            		<p>Terima kasih telah mengunjungi Perpustakaan Fanny Fahira.</p>
+            		<button class="close-btn" onclick="closePopup()">Close</button>
         	</div>
     	</div>
 
 	<script>
-        	// Menampilkan popup otomatis saat halaman dimuat
         	window.onload = function() {
             		document.getElementById("welcomePopup").style.display = "flex";
         	};
-
-        	// Fungsi untuk menutup popup
         	function closePopup() {
             		document.getElementById("welcomePopup").style.display = "none";
         	}
