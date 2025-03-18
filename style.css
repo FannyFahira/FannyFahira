@@ -170,6 +170,7 @@ input[type=submit]:hover {
 }
 
 footer {
+	width: 100%;
 	padding: 30px 0;
 	background-color: #6D7993;
 	color: #fff;
