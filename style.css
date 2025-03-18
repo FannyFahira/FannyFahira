@@ -197,41 +197,6 @@ footer {
        z-index: 1000;
 }
 
-/* Gaya untuk overlay latar belakang */
-.overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        justify-content: center;
-        align-items: center;
-}
-/* Gaya untuk kotak pesan */
-.popup {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        width: 300px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-}
-/* Tombol tutup */
-.close-btn {
-        margin-top: 10px;
-        background: #ff5c5c;
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        border-radius: 5px;
-}
-.close-btn:hover {
-        background: #ff1c1c;
-}
-
 .bg-loader {
 	background-color: #eee;
 	position: fixed;
