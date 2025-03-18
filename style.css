@@ -160,9 +160,9 @@ input[type=kirim] {
 input[type=kirim]:hover {
   background-color: #45a049;
 }
-.container {
+.container contact {
   border-radius: 5px;
-  background-color: #e5f5ff;
+  background-color: #9099A2;
   padding: 20px;
 }
 
