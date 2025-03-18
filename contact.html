@@ -48,35 +48,21 @@
 				    <h3>HUBUNGI KAMI</h3>
 				    <body> 
 				    <body> 
-			            <p>Ingin tahu lebih banyak atau punya pertanyaan? Silahkan hubungi melalui form berikut:</p>
+			            <p>Ingin tahu lebih banyak atau punya pertanyaan? jangan ragu untuk menghubungi kami melalui form berikut:</p>
 
+					  <form action="action_page.php">
+						   <label for="nama">Nama Anda</label>
+    						   <input type="text" id="nama" name="namaanda">
 
-			            <form action="contact.php" method="GET">
-			                <!-- letakkan field di sini -->
-					    
-			                 <tr>
-			                 <label> Nama: </label>
-			                 <input type="text" name="nama-lengkap" /><br/></td>
-			                 </tr>
-			             <p>
+    						   <label for="email">Email Anda</label>
+    						   <input type="text" id="email" name="emailanda">
 
-			                  <tr>
-			                  <label> Email: </label>
-			                  <input type="email" name="email" /><br />
-			                  </tr>
-			              <p>
+						   <label for="pesan">Pesan Anda</label>
+    						   <textarea id="pesan" name="pesananda" placeholder="ketik sesuatu.." style="height:200px"></textarea>
 
-			                  <tr>
-			              <form action="prosess-form.php" method="GET">
-					     <!-- letakkan field di sini -->
-			              <label> Isi Komentar: </label>
-			              <textarea name="komentar" rows="4" cols="50" ></textarea>    <br /><br />
-			                  </tr>
+    						   <input type="kirim" value="Kirim">
+					  </form>
 
-			              <td><input type="submit" name="submit" value="Submit" value="Send"/></td>
-			                       <td></td>
-			                       <td></td> 
-				      </form>
 	
 				    	
 	        <!-- footer -->
