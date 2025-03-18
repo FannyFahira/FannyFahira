@@ -101,6 +101,7 @@ body {
 .demo-table {
 	border-collapse: collapse;
 	font-size: 13px;
+	margin: 0 auto;
 }
 .demo-table th, 
 .demo-table td {
