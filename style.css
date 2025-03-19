@@ -113,6 +113,9 @@ section h3 {
 	margin-bottom: 20px;
 	text-align: center;
 }
+p.outset {
+	border-style: outset;
+}
 
 body {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", "Segoe Ui";
