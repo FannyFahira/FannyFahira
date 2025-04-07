@@ -49,20 +49,20 @@
 				    <body>  
 			            <p>Ingin mengetahui informasi lebih lanjut atau punya pertanyaan? Jangan ragu untuk menghubungi kami melalui form berikut:</p>
 
-					  <form action="action_page.php">
-						   <label for="nama">Nama Anda</label>
-    						   <input type="text" id="nama" name="namaanda">
+					  <main>
+    						<form id="formPesan" action="https://formspree.io/f/mgvaovgd" method="POST">
+        						<label for="name">Nama:</label>
+        						<input type="text" id="name" name="name" required>
 
-    						   <label for="email">Email Anda</label>
-    						   <input type="text" id="email" name="emailanda">
+        						<label for="email">Email:</label>
+        						<input type="email" id="email" name="email" required>
 
-						   <label for="pesan">Pesan Anda</label>
-    						   <textarea id="pesan" name="pesananda" placeholder="ketik sesuatu.." style="height:200px"></textarea>
+        						<label for="message">Pesan:</label>
+        						<textarea id="message" name="message" rows="4" required></textarea>
 
-						   <div class="fs-button-group">
-							   <button class="fs-button" type="submit">Submit</button>
-						   </div>
-					  </form>
+        						<button type="submit">Kirim</button>
+    						</form>
+					  </main>
 				    </body>
 			    </div>
 		    </section>
