@@ -176,13 +176,13 @@ body {
 }
 .btn-kirim {
     	background-color: #4A3267;
-    	color: #333;
+    	color: white;
     	border: none;
     	transition: background-color 0.3s ease;
 }
 .btn-kirim:hover {
     	background-color: #c2c2e6;
-    	color: #222;
+    	color: white;
 }
 
 footer {
