@@ -160,26 +160,19 @@ body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
 
 /* Contact */ 
-input[type=text], select, textarea {
-	  width: 100%;
-	  padding: 12px;
-	  border: 1px solid #ccc;
-	  border-radius: 4px;
-	  box-sizing: border-box;
-	  margin-top: 6px;
-	  margin-bottom: 16px;
-	  resize: vertical;
+body {
+      	background-color: #f8f9fa;
 }
-fs-button-group {
-	  background-color: #04AA6D;
-	  color: white;
-	  padding: 12px 20px;
-	  border: none;
-	  border-radius: 4px;
-	  cursor: pointer;
+.contact-form {
+      	background-color: #e5f5ff;
+      	padding: 30px;
+      	border-radius: 12px;
+      	box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-fs-button-group:hover {
-	  background-color: #45a049;
+.contact-form:hover {
+      	transform: translateY(-2px);
+      	box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
 
 footer {
