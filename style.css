@@ -112,6 +112,25 @@ button {
 button:hover {
         background-color: #987284;
 }
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.popup-content button {
+    background: #4A3267;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.popup-content button:hover {
+    background: #987284;
+}
 
 .about,
 .contact {
