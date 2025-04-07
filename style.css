@@ -174,16 +174,6 @@ body {
       	transform: translateY(-2px);
       	box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
-.btn-kirim {
-    	background-color: #4A3267;
-    	color: white;
-    	border: none;
-    	transition: background-color 0.3s ease;
-}
-.btn-kirim:hover {
-    	background-color: #c2c2e6;
-    	color: white;
-}
 
 footer {
 	width: 100%;
