@@ -160,20 +160,75 @@ body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
 
 /* Contact */ 
-body {
-      	background-color: #f8f9fa;
+/* Container tengah */
+.contact {
+  padding: 60px 20px;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
 }
+
+.contact .container {
+  max-width: 700px;
+  width: 100%;
+}
+
+/* Kotak formulir */
 .contact-form {
-      	background-color: #e5f5ff;
-      	padding: 30px;
-      	border-radius: 12px;
-      	box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      	transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #e5f5ff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
-.contact-form:hover {
-      	transform: translateY(-2px);
-      	box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+
+/* Judul formulir */
+.contact-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
 }
+
+/* Grup input */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Label */
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* Input & Textarea */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* Tombol */
+.contact-form button {
+  background-color: #D8D8F6;
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #c6c6eb;
+}
+
 
 footer {
 	width: 100%;
