@@ -105,18 +105,16 @@
 	        </script>
 		<script>
   			document.getElementById("contactForm").addEventListener("submit", function (e) {
-   	 			e.preventDefault(); // Mencegah pengiriman default
+    				e.preventDefault(); // Stop form submission
 
     				const nama = document.getElementById("nama").value.trim();
     				const email = document.getElementById("email").value.trim();
     				const pesan = document.getElementById("pesan").value.trim();
-
     				const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     				if (nama && emailPattern.test(email) && pesan) {
       					showNotification("success");
-      					// Jika ada server backend, bisa tambahkan pengiriman di sini
-      					this.reset(); // Reset form setelah kirim
+      					document.getElementById("contactForm").reset();
     				} else {
       					showNotification("error");
     				}
@@ -126,13 +124,20 @@
     				const notif = document.getElementById(
       					type === "success" ? "successNotification" : "errorNotification"
     				);
+    				const sound = document.getElementById(
+      					type === "success" ? "successSound" : "errorSound"
+    				);
+
     				notif.style.display = "block";
+    				sound.currentTime = 0;
+    				sound.play();
 
     				setTimeout(() => {
       					notif.style.display = "none";
     				}, 3000);
   			}
 		</script>
+
 
 </body>
 </html>
