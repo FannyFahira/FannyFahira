@@ -117,7 +117,11 @@
 
 	<!-- Kolom pencarian -->
 	<div class="search-container">
-  		<input type="text" id="searchInput" placeholder="🔍 Cari buku..." onkeyup="filterBooks()">
+  		<div class="search-box">
+    			<input type="text" id="searchInput" placeholder="Cari buku..." onkeyup="filterBooks()" autocomplete="off">
+    			<button onclick="resetSearch()" id="resetBtn">&times;</button>
+    			<ul id="suggestions"></ul>
+  		</div>
 	</div>
 	
 	<!-- koleksi digital -->
