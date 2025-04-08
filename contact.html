@@ -54,13 +54,18 @@
       					<form id="contactForm" action="#" method="POST" novalidate>
 						<!-- Notifikasi sukses -->
 						<div id="successNotification" class="notification success">
+  							<span class="icon">✅</span>
   							<p>Pesan kamu berhasil dikirim!</p>
 						</div>
-
 						<!-- Notifikasi error -->
 						<div id="errorNotification" class="notification error">
+  							<span class="icon">⚠️</span>
   							<p>Harap isi semua kolom dengan benar!</p>
 						</div>
+
+						<!-- Suara -->
+						<audio id="successSound" src="https://assets.mixkit.co/sfx/download/mixkit-achievement-bell-600.wav"></audio>
+						<audio id="errorSound" src="https://assets.mixkit.co/sfx/download/mixkit-wrong-electricity-955.wav"></audio>
 
   						<div class="form-group">
     							<label for="nama"><i class="fas fa-user"></i> Nama</label>
