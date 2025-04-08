@@ -253,11 +253,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 .notification.success {
-  background-color: #4ee654;
+  background-color: #4EE654;
 }
 
 .notification.error {
-  background-color: #ed5545;
+  background-color: #ED5545;
 }
 
 @keyframes fadeIn {
