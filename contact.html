@@ -66,31 +66,6 @@
   						</div>
   						<button type="submit"><i class="fas fa-paper-plane"></i> Kirim Pesan</button>
 					</form>
-					<script>
-  						document.getElementById("contactForm").addEventListener("submit", function(e) {
-    							const nama = document.getElementById("nama");
-    							const email = document.getElementById("email");
-    							const pesan = document.getElementById("pesan");
-
-    							let valid = true;
-
-    							if (nama.value.trim().length < 2) {
-      								alert("Nama minimal 2 karakter.");
-      								valid = false;
-    							}
-    							if (!email.checkValidity()) {
-      								alert("Email tidak valid.");
-      								valid = false;
-    							}
-    							if (pesan.value.trim().length < 10) {
-      								alert("Pesan minimal 10 karakter.");
-      								valid = false;
-    							}
-    							if (!valid) {
-      								e.preventDefault();
-    							}
-  						});
-					</script>
     				</div>
   			</div>
 		</section>
