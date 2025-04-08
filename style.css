@@ -110,21 +110,24 @@ section h3 {
 .search-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  align-items: center;
+  padding: 20px 15px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .search-box {
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 #searchInput {
   width: 100%;
-  padding: 12px 50px 12px 20px;
+  padding: 12px 48px 12px 20px;
   font-size: 16px;
   border: none;
-  border-radius: 50px;
+  border-radius: 40px;
   background: #f0f4f8;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: 0.3s ease;
@@ -178,6 +181,23 @@ section h3 {
 
 #suggestions li:hover {
   background-color: #f2f9ff;
+}
+
+/* 📱 RESPONSIVE TWEAKS */
+@media (max-width: 768px) {
+  #searchInput {
+    font-size: 15px;
+    padding: 11px 42px 11px 18px;
+  }
+
+  #resetBtn {
+    font-size: 18px;
+    right: 12px;
+  }
+
+  .search-box {
+    max-width: 100%;
+  }
 }
 
 .book-grid {
