@@ -171,6 +171,19 @@
 			$(".bg-loader").hide();
 		})
 	</script>
+
+	<script>
+  		function filterBooks() {
+    			const input = document.getElementById('searchInput').value.toLowerCase();
+    			const books = document.querySelectorAll('.book-card');
+
+    			books.forEach(card => {
+      				const text = card.innerText.toLowerCase();
+      				card.style.display = text.includes(input) ? 'block' : 'none';
+    			});
+  		}
+	</script>
+
     	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
