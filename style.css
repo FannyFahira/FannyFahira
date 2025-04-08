@@ -161,7 +161,7 @@ body {
   color: white;
   font-weight: bold;
   padding: 12px;
-  text-align: left;
+  text-align: center;
   font-size: 16px;
 }
 
@@ -169,6 +169,7 @@ body {
   padding: 12px;
   border-top: 1px solid #eee;
   font-size: 15px;
+  text-align: center;
 }
 
 .data-diri-table tr:nth-child(even) td {
