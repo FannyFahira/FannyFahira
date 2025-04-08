@@ -243,26 +243,34 @@ body {font-family: Arial, Helvetica, sans-serif;}
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9999;
-  padding: 20px 30px;
-  border-radius: 12px;
+  padding: 25px 40px;
+  border-radius: 20px;
   font-weight: bold;
   text-align: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
   color: white;
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeInScale 0.3s ease-in-out;
+  font-size: 1.2em;
+  backdrop-filter: blur(10px);
+}
+
+.notification .icon {
+  font-size: 2em;
+  display: block;
+  margin-bottom: 10px;
 }
 
 .notification.success {
-  background-color: #4EE654;
+  background: linear-gradient(135deg, #4CAF50, #81C784);
 }
 
 .notification.error {
-  background-color: #ED5545;
+  background: linear-gradient(135deg, #E74C3C, #F1948A);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95) translate(-50%, -50%); }
-  to   { opacity: 1; transform: scale(1) translate(-50%, -50%); }
+@keyframes fadeInScale {
+  0% { opacity: 0; transform: scale(0.8) translate(-50%, -50%); }
+  100% { opacity: 1; transform: scale(1) translate(-50%, -50%); }
 }
 
 
