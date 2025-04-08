@@ -273,12 +273,55 @@
   		container.appendChild(card);
 	});
 
-	// Carousel auto slide
+	const dotsContainer = document.getElementById("carouselDots");
+
+	// Injects dots
+	eventData.forEach((_, index) => {
+  		const dot = document.createElement("button");
+  		dot.addEventListener("click", () => {
+    			currentIndex = index;
+    			updateSlide();
+    			resetInterval();
+  		});
+  		dotsContainer.appendChild(dot);
+	});
+
+	updateSlide();
+	
 	let currentIndex = 0;
-	setInterval(() => {
-  		currentIndex = (currentIndex + 1) % eventData.length;
+
+	function updateSlide() {
   		container.style.transform = `translateX(-${currentIndex * 100}%)`;
-	}, 4000); // 4 detik
+		const dots = dotsContainer.querySelectorAll("button");
+  		dots.forEach((dot, index) => {
+    			dot.classList.toggle("active", index === currentIndex);
+  		});
+	}
+
+	// Otomatis ganti slide
+	let interval = setInterval(() => {
+  		nextSlide();
+	}, 4000);
+
+	function nextSlide() {
+  		currentIndex = (currentIndex + 1) % eventData.length;
+  		updateSlide();
+  		resetInterval();
+	}
+
+	function prevSlide() {
+  		currentIndex = (currentIndex - 1 + eventData.length) % eventData.length;
+  		updateSlide();
+  		resetInterval();
+	}
+
+	// Reset interval saat tombol diklik
+	function resetInterval() {
+  		clearInterval(interval);
+  		interval = setInterval(() => {
+    			nextSlide();
+  		}, 4000);
+	}
 	</script>
 
     	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
