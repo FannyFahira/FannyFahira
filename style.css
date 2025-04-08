@@ -249,24 +249,20 @@ section h3 {
     background: #388E3C;
 }
 
+.event-carousel .carousel-item {
+  transition: transform 0.6s ease;
+  padding: 20px 0;
+}
 .event-card {
-  background-color: #ffffff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .event-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
 }
-
-.event-title {
-  font-weight: 600;
-  color: #2c3e50;
-}
-
 .event-desc {
-  font-size: 1rem;
-  color: #555;
+  min-height: 80px;
+  color: #444;
 }
 
 .contact p {
