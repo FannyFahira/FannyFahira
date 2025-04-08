@@ -130,7 +130,7 @@ section h3 {
 
 #searchInput:focus {
   	outline: none;
-  	border-color: #4CAF50;
+  	border-color: #2a9ce3;
   	box-shadow: 0 0 10px rgba(76, 175, 80, 0.4);
 }
 
