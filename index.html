@@ -161,16 +161,18 @@
 	
 	<!-- event -->
 	<div class="carousel-container">
-		    <h3 style="text-align: center; padding:20px 0; color: #6D7993; margin-bottom: 20px;">
-			   <i class="fas fa-bullhorn me-2"></i> Event Terbaru Perpustakaan 
-		    </h3>	    
-  		    <div class="carousel-track" id="eventCarousel">
-    			   <!-- Cards akan di-generate lewat JS -->
-  		    </div>
-		    <div class="carousel-dots" id="carouselDots"></div>
-		    <!-- Kontrol tombol -->
-  		    <button class="carousel-btn prev" onclick="prevSlide()">&#8592; Prev</button>
-  		    <button class="carousel-btn next" onclick="nextSlide()">Next &#8594;</button>
+		<h3 style="text-align: center; padding:20px 0; color: #6D7993; margin-bottom: 20px;">
+			<i class="fas fa-bullhorn me-2"></i> Event Terbaru Perpustakaan 
+		</h3>	    
+  		<button id="prevBtn" class="carousel-nav prev">← Prev</button>
+  
+  		<div class="carousel-card-wrapper" id="carouselWrapper">
+    			<!-- Event cards will be injected here -->
+  		</div>
+  
+  		<button id="nextBtn" class="carousel-nav next">Next →</button>
+
+  		<div class="carousel-dots" id="carouselDots"></div>
 	</div>
 	
 	
