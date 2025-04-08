@@ -159,28 +159,12 @@
 	</section>
 
 	<!-- event -->
-	<section class="event-carousel py-5 bg-light">
-  		<div class="container">
-    			<h3 class="text-center mb-4">
-      				<i class="fas fa-bullhorn me-2"></i>Event Terbaru Seputar Perpustakaan
-    			</h3>
-
-    			<div id="eventCarousel" class="carousel slide" data-bs-ride="carousel">
-      				<div class="carousel-inner" id="carouselEvents">
-        				<!-- JS akan masukkan konten di sini -->
-      				</div>
-
-      				<button class="carousel-control-prev" type="button" data-bs-target="#eventCarousel" data-bs-slide="prev">
-        				<span class="carousel-control-prev-icon"></span>
-      				</button>
-      				<button class="carousel-control-next" type="button" data-bs-target="#eventCarousel" data-bs-slide="next">
-        				<span class="carousel-control-next-icon"></span>
-      				</button>
-    			</div>
+	<div class="carousel-container">
+  		<div class="carousel-track" id="eventCarousel">
+    			<!-- Cards akan di-generate lewat JS -->
   		</div>
-	</section>
-
-
+	</div>
+	
 	
 	<!-- footer -->
 	<footer>
@@ -248,31 +232,45 @@
 	</script>
 
 	<script>
-  		fetch('event-data.json')
-    			.then(response => response.json())
-    			.then(data => {
-      				const carousel = document.getElementById('carouselEvents');
-      				data.forEach((event, index) => {
-        				const item = document.createElement('div');
-        				item.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+	const eventData = [
+  		{
+    			"title": "Pekan Literasi Digital 2025",
+    			"date": "21 - 25 April 2025",
+    			"desc": "Serangkaian acara seperti pelatihan e-book, diskusi daring, dan pameran koleksi digital."
+  		},
+  		{
+    			"title": "Workshop Penulisan Ilmiah",
+    			"date": "3 Mei 2025",
+    			"desc": "Belajar menulis karya ilmiah bersama para ahli dari bidang kepustakawanan."
+  		},
+  		{
+    		"title": "Lomba Resensi Buku Nasional",
+    		"date": "17 Juni 2025",
+    		"desc": "Ayo ikuti lomba menulis resensi buku dan menangkan hadiah menarik!"
+  		}
+	];
 
-        				item.innerHTML = `
-          					<div class="d-flex justify-content-center">
-            						<div class="event-card text-center p-4 bg-white rounded shadow" style="width: 100%; max-width: 600px; min-height: 320px;">
-              							<h5 class="text-primary mb-2">
-                							<i class="fas fa-calendar-day me-2"></i>${event.judul}
-              							</h5>
-              							<p class="text-muted mb-1">
-                							<i class="far fa-calendar-alt me-1"></i>${event.tanggal}
-              							</p>
-              							<p class="event-desc mb-3">${event.deskripsi}</p>
-              							<a href="${event.link}" class="btn btn-dark btn-sm">Baca Selengkapnya</a>
-            						</div>
-          					</div>
-        `				;
-        				carousel.appendChild(item);
-      				});
-    			});
+	const container = document.getElementById("eventCarousel");
+
+	// Inject cards
+	eventData.forEach((event) => {
+  		const card = document.createElement("div");
+  		card.className = "event-card";
+  		card.innerHTML = `
+    			<div class="event-title">📅 ${event.title}</div>
+    			<div class="event-date">${event.date}</div>
+    			<div class="event-desc">${event.desc}</div>
+    			<a href="#" style="color:#007bff; font-weight:bold;">Baca Selengkapnya</a>
+  `		;
+  		container.appendChild(card);
+	});
+
+	// Carousel auto slide
+	let currentIndex = 0;
+	setInterval(() => {
+  		currentIndex = (currentIndex + 1) % eventData.length;
+  		container.style.transform = `translateX(-${currentIndex * 100}%)`;
+	}, 4000); // 4 detik
 	</script>
 
     	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
