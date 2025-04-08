@@ -118,34 +118,6 @@ body {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", "Segoe Ui";
 }
 
-/* DARK MODE */
-body.dark-mode {
-	background-color: #121212;
-	color: #f1f1f1;
-}
-
-body.dark-mode header,
-body.dark-mode footer {
-	background-color: #1e1e1e;
-}
-
-body.dark-mode a,
-body.dark-mode h1,
-body.dark-mode h3,
-body.dark-mode p,
-body.dark-mode small {
-	color: #f1f1f1;
-}
-
-body.dark-mode .btn-outline-dark {
-	color: #fff;
-	border-color: #fff;
-}
-
-body.dark-mode .btn-outline-dark:hover {
-	background-color: #444;
-}
-
 /* Table */
 .demo-table {
 	border-collapse: collapse;
