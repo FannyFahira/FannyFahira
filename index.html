@@ -177,16 +177,52 @@
 	</script>
 
 	<script>
-  		function filterBooks() {
-    			const input = document.getElementById('searchInput').value.toLowerCase();
-    			const books = document.querySelectorAll('.book-card');
+  		const books = [
+    			"The Little Stoicism",
+    			"Dunia Sophie",
+    			"The Midnight Library"
+    			// Tambahkan lagi sesuai judul buku kamu
+  		];
 
-    			books.forEach(card => {
+  		const input = document.getElementById('searchInput');
+  		const suggestions = document.getElementById('suggestions');
+
+  		input.addEventListener('input', () => {
+    			const value = input.value.toLowerCase();
+    			suggestions.innerHTML = '';
+
+    		if (value) {
+      			const filtered = books.filter(book => book.toLowerCase().includes(value));
+      			filtered.forEach(book => {
+        			const li = document.createElement('li');
+        			li.textContent = book;
+        			li.onclick = () => {
+          				input.value = book;
+          				suggestions.innerHTML = '';
+          				filterBooks();
+        			};
+        			suggestions.appendChild(li);
+      			});
+    		}
+  		});
+
+  		function filterBooks() {
+    			const filter = input.value.toLowerCase();
+    			const cards = document.querySelectorAll('.book-card');
+
+    			cards.forEach(card => {
       				const text = card.innerText.toLowerCase();
-      				card.style.display = text.includes(input) ? 'block' : 'none';
+      				card.style.display = text.includes(filter) ? 'block' : 'none';
     			});
   		}
+
+  		function resetSearch() {
+    			input.value = '';
+    			suggestions.innerHTML = '';
+    			filterBooks();
+  		}
 	</script>
+
 
     	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
