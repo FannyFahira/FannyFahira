@@ -238,18 +238,24 @@
 	<script>
 	const eventData = [
   		{
-    			"title": "Riset Bibliometrik",
-    			"date": "10 - 11 April 2025",
-    			"desc": "Pelatihan full Praktik Riset Bibliometrik menggunakan VOSviewer dan Biblioshiny + kombinasi AI."
+    			"title": "Workshop: How to Publish Journal Article",
+    			"date": "5 Mei 2025",
+			"time": 09.00 - 11.00 WIB
+			"venue": Ruang Konferensi Lantai 1 Perpustakaan USU
+    			"desc": "Perpustakaan USU bekerjasama dengan SAGE, kembali mengadakan Workshop cara menerbitkan artikel jurnal bersama dengan Dr. Lim Khee Hiang."
   		},
   		{
     			"title": "Webinar PERSADA: Paparan Statistik dan Analisis Data",
     			"date": "18 Maret 2025",
+			"time": 09.00 WIB - Selesai
+			"venue": Via Zoom
     			"desc": "Belajar Data BPS dan cari data secara kilat. Kerjasama Badan Pusat Statistik Sumut bersama USU dan UMSU."
   		},
   		{
     			"title": "Kelas Literasi: Pemanfaatan AI untuk Mendukung Perkuliahan",
     			"date": "13 Maret 2025",
+			"time": 09.00 - 11.00 WIB
+			"venue": Ruang TGCL Perpustakaan USU
     			"desc": "Perpustakaan USU kembali mengadakan kelas literasi bersama Dosen Fasilkom TI USU, bekerjasama dengan Sagung Seto meningkatkan literasi AI mahasiswa"
   		}
 	];
@@ -263,8 +269,10 @@
   		card.innerHTML = `
     			<div class="event-title">📅 ${event.title}</div>
     			<div class="event-date">${event.date}</div>
+       			<div class="event-time">${event.time}</div>
+	  		<div class="event-venue">${event.venue}</div>
     			<div class="event-desc">${event.desc}</div>
-    			<a href="#" style="color:#007bff; font-weight:bold;">Baca Selengkapnya</a>
+    			<a href="https://www.instagram.com/p/DIz6d59TPIL/?igsh=Nnd0a2poMjVoNXhy/"target="blank" style="color:#007bff; font-weight:bold;">Baca Selengkapnya</a>
   `		;
   		container.appendChild(card);
 	});
