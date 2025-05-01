@@ -252,27 +252,42 @@ section h3 {
     background: #388E3C;
 }
 
+#event-perpustakaan {
+    background-color: #f0f5ff;
+    padding: 60px 0;
+}
+
+#event-perpustakaan h3 {
+    color: #6D7993;
+    font-size: 32px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
 .carousel-container {
     position: relative;
     max-width: 900px;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
-        
+
 .carousel {
     display: flex;
     transition: transform 0.5s ease-in-out;
 }
-        
+
 .carousel-item {
     min-width: 100%;
     padding: 30px;
     background-color: white;
     border-left: 5px solid #3182ce;
 }
-        
+
 .event-date {
     display: flex;
     align-items: center;
@@ -281,128 +296,161 @@ section h3 {
     margin-bottom: 12px;
     font-size: 16px;
 }
-        
+
 .event-date svg {
     margin-right: 8px;
 }
-        
+
 .event-time-venue {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
     margin-bottom: 16px;
 }
-        
+
 .event-time, .event-venue {
     display: flex;
     align-items: center;
     color: #4a5568;
     font-size: 14px;
 }
-        
+
 .event-time svg, .event-venue svg {
     margin-right: 6px;
 }
-        
+
 .event-title {
     font-size: 24px;
     margin-bottom: 16px;
     color: #2d3748;
 }
-        
+
 .event-desc {
     color: #4a5568;
     line-height: 1.6;
     margin-bottom: 20px;
 }
-        
+
 .event-link {
-     display: inline-block;
-     color: #3182ce;
-     text-decoration: none;
-     font-weight: 600;
-     position: relative;
-     padding-bottom: 2px;
+    display: inline-block;
+    color: #3182ce;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.3s ease;
 }
-        
+
 .event-link:after {
-     content: '';
-     position: absolute;
-     width: 100%;
-     height: 2px;
-     bottom: 0;
-     left: 0;
-     background-color: #3182ce;
-     transform: scaleX(0);
-     transform-origin: bottom right;
-     transition: transform 0.3s ease-out;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #3182ce;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
 }
-        
+
+.event-link:hover {
+    color: #2c5282;
+}
+
 .event-link:hover:after {
-     transform: scaleX(1);
-     transform-origin: bottom left;
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
-        
+
 .carousel-nav {
-     position: absolute;
-     top: 50%;
-     width: 100%;
-     display: flex;
-     justify-content: space-between;
-     transform: translateY(-50%);
-     padding: 0 15px;
-     z-index: 10;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 15px;
+    z-index: 10;
 }
-        
+
 .carousel-button {
-     background-color: rgba(255, 255, 255, 0.7);
-     border: none;
-     width: 40px;
-     height: 40px;
-     border-radius: 50%;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     cursor: pointer;
-     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-     transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
-        
+
 .carousel-button:hover {
-     background-color: white;
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
 }
-        
+
 .carousel-dots {
-     display: flex;
-     justify-content: center;
-     margin-top: 20px;
-     gap: 8px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 8px;
 }
-        
+
 .dot {
-     width: 12px;
-     height: 12px;
-     border-radius: 50%;
-     background-color: #cbd5e0;
-     cursor: pointer;
-     transition: background-color 0.3s ease;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #cbd5e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
-        
+
+.dot:hover {
+    background-color: #a0aec0;
+}
+
 .dot.active {
-     background-color: #3182ce;
+    background-color: #3182ce;
+    transform: scale(1.2);
 }
-        
+
 @media (max-width: 768px) {
     .carousel-item {
         padding: 20px;
-    }
+    }    
     .event-title {
         font-size: 20px;
-    }            
+    }   
     .event-time-venue {
         flex-direction: column;
         gap: 8px;
+    }    
+    .carousel-nav {
+        padding: 0 10px;
+    }    
+    .carousel-button {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    #event-perpustakaan h3 {
+        font-size: 24px;
+    }    
+    .carousel-item {
+        padding: 15px;
+    }    
+    .event-title {
+        font-size: 18px;
+    }   
+    .event-desc {
+        font-size: 14px;
     }
 }
 
