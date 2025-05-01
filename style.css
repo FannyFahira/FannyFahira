@@ -77,13 +77,13 @@ section {
 	padding:50px 0;
 } 
 section h3 {
-	color: #6D7993;
-        font-size: 32px;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
+	color: #2d5282;
+    	font-size: 32px;
+    	margin-bottom: 40px;
+    	display: flex;
+    	align-items: center;
+    	justify-content: center;
+   	gap: 12px;
 }
 .about,
 .contact {
