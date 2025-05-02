@@ -116,6 +116,9 @@ section h3 {
 	justify-content: center;
 	text-align: center;
 }
+.block:hover {
+    background-color: #2c5282;
+}
 
 .search-container {
   text-align: center;
