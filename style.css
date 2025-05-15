@@ -25,18 +25,6 @@ a {
   display: block;
   clear: both;
 }
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}        
-.logo {
-  height: 60px;
-  transition: transform 0.3s ease;
-}        
-.logo:hover {
-  transform: scale(1.05);
-}
 header h1 {
   float: left;
   padding:15px 0;
