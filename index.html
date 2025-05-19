@@ -7,7 +7,6 @@
 	<title>Fanny Fahira</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-	<script src="cookies.js"></script>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -535,6 +534,170 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+</script>
+
+<script>
+// Cek apakah cookie consent sudah disimpan
+if (!localStorage.getItem('cookieConsent')) {
+    // Buat style untuk banner
+    var style = document.createElement('style');
+    style.textContent = `
+        #cookie-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1000px;
+            background: linear-gradient(135deg, #3885E1, #205faa);
+            color: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 9999;
+            font-family: Arial, sans-serif;
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateX(-50%) translateY(100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        
+        #cookie-banner-text {
+            flex: 1;
+        }
+        
+        #cookie-banner h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        #cookie-banner p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            opacity: 0.95;
+        }
+        
+        #cookie-banner-buttons {
+            display: flex;
+            gap: 12px;
+            margin-left: 20px;
+        }
+        
+        .cookie-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .cookie-btn-accept {
+            background-color: white;
+            color: #3885E1;
+        }
+        
+        .cookie-btn-accept:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        
+        .cookie-btn-manage {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(5px);
+        }
+        
+        .cookie-btn-manage:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .cookie-policy {
+            color: white;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        
+        .cookie-policy:hover {
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            #cookie-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 16px;
+            }
+            
+            #cookie-banner-buttons {
+                margin-top: 15px;
+                margin-left: 0;
+                justify-content: center;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Buat banner
+    var banner = document.createElement('div');
+    banner.id = 'cookie-banner';
+    banner.innerHTML = `
+        <div id="cookie-banner-text">
+            <h3>Kami Menggunakan Cookies🍪</h3>
+            <p>Website ini menggunakan cookies untuk meningkatkan pengalaman Anda. Dengan melanjutkan, Anda menyetujui penggunaan cookies sesuai <a href="/kebijakan-privasi" class="cookie-policy">kebijakan kami</a>.</p>
+        </div>
+        <div id="cookie-banner-buttons">
+            <button id="cookie-accept" class="cookie-btn cookie-btn-accept">Saya Setuju</button>
+            <button id="cookie-manage" class="cookie-btn cookie-btn-manage">Kelola Cookies</button>
+        </div>
+    `;
+    
+    // Tambahkan banner ke body
+    document.body.appendChild(banner);
+    
+    // Event listeners
+    document.getElementById('cookie-accept').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'accepted');
+        banner.style.animation = 'slideDown 0.5s ease-out forwards';
+        setTimeout(function() {
+            banner.remove();
+        }, 500);
+    });
+    
+    document.getElementById('cookie-manage').addEventListener('click', function() {
+        // Tambahkan fungsi untuk mengelola cookies
+        // Misalnya, buka modal pengaturan cookies
+        // Untuk contoh sederhana, kita hanya menyimpan status 'managed'
+        localStorage.setItem('cookieConsent', 'managed');
+        banner.style.animation = 'slideDown 0.5s ease-out forwards';
+        setTimeout(function() {
+            banner.remove();
+        }, 500);
+        
+        // Tambahkan di sini kode untuk membuka modal pengaturan cookies jika diperlukan
+        // Contoh: 
+        // openCookieSettings();
+    });
+}
+
+// Tambahkan animasi untuk menghilangkan banner
+document.head.insertAdjacentHTML('beforeend', `
+    <style>
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(0); opacity: 1; }
+            to { transform: translateX(-50%) translateY(100px); opacity: 0; }
+        }
+    </style>
+`);
 </script>
 
     	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
