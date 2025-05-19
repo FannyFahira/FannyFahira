@@ -295,12 +295,72 @@
 </section>
 	
 	
-	<!-- footer -->
-	<footer>
-		<div class="container">
-			<small>Copyright &copy; 2025 Perpustakaan Fanny Fahira</small>
-		</div>
-	</footer>
+    <!-- footer -->
+    <footer>
+        <div class="waves"></div>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>Tentang Kami</h3>
+                <p>Perpustakaan Fanny Fahira didedikasikan untuk menyediakan akses ke pengetahuan bagi seluruh masyarakat. Kami menyediakan koleksi buku yang beragam, fasilitas yang nyaman, dan layanan perpustakaan modern.</p>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Padang Bulan, Medan Baru, Kota Medan, indonesia</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <span>+62 812-3456-7890</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>fannyfahira@students.usu.ac.id</span>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/fny_fhira/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@FannyFahira777/" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://x.com/funnylaa7/" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/fanny-fahira-65548930a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section links">
+                <h3>Tautan Cepat</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-angle-right"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> E-Resources</a></li>
+                    <li><a href="http://localhost/tabel_perkalian.php"><i class="fas fa-angle-right"></i> PHP</a></li>
+		    <li><a href="formulir.php"><i class="fas fa-angle-right"></i> Form</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>Copyright &copy; 2025 Perpustakaan Fanny Fahira.</p>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+    
+    <script>
+        // Script untuk tombol back to top
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 
 
 	<script>
