@@ -15,14 +15,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
-.medsos {
+.line {
   padding:5px 0;
   background-color: #6D7993;  
-}
-.medsos ul li {
-  display: inline-block;
-  color: #fff;
-  margin-right:10px;
 }
 .container {
   width:80%;
