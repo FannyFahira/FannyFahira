@@ -1213,3 +1213,72 @@ body {
         	flex-direction: column;
         }
 }
+
+/* CSS untuk tombol CV dan LinkedIn */
+.button-section {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.profile-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 140px;
+    justify-content: center;
+}
+
+.cv-btn {
+    background-color: #5d6d7e;
+    color: white;
+}
+
+.cv-btn:hover {
+    background-color: #4a5766;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.linkedin-btn {
+    background-color: #0077b5;
+    color: white;
+}
+
+.linkedin-btn:hover {
+    background-color: #005582;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.profile-btn i {
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .profile-btn {
+        width: 200px;
+    }
+}
