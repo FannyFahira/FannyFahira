@@ -88,6 +88,20 @@ section h3 {
     	justify-content: center;
    	gap: 12px;
 }
+
+.new-post-form {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+}
+.new-post-form h3 {
+            color: #2c5aa0;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+}
+
 .about,
 .contact {
 	padding-bottom: 100px;
