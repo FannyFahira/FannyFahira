@@ -101,6 +101,27 @@ section h3 {
             margin-bottom: 20px;
             font-size: 1.5em;
 }
+.btn {
+            background: linear-gradient(135deg, #2c5aa0 0%, #4a90e2 100%);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s;
+}
+
+.btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 90, 160, 0.3);
+}
+
+.btn-small {
+            padding: 8px 15px;
+            font-size: 14px;
+}
 
 .about,
 .contact {
