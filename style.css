@@ -1335,12 +1335,12 @@ body {
 }
 
 .certificate-btn {
-    background-color: #f0f6ff;
+    background-color: ##d5dff8;
     color: grey;
 }
 
 .certificate-btn:hover {
-    background-color: #e5efff;
+    background-color: #9ebbee;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
