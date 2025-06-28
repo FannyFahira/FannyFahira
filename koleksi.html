@@ -265,8 +265,12 @@
         <p align="center">Temukan buku dengan berbagai pilihan tema dan genre sesuai kebutuhan Anda</p>
     </div>
 
-    <div class="search-bar">
-        <input type="text" class="search-input" placeholder="🔍︎ Cari judul buku, penulis, atau genre..." id="searchInput">
+    <div class="search-container">
+  	<div class="search-box">
+    		<input type="text" id="searchInput" placeholder="🔍︎ Cari buku, penulis, atau genre..." onkeyup="filterBooks()" autocomplete="off">
+    		<button onclick="resetSearch()" id="resetBtn">&times;</button>
+    		<ul id="suggestions"></ul>
+  	</div>
     </div>
 
     <div class="koleksi-books-grid" id="booksGrid">
