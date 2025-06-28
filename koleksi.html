@@ -8,7 +8,6 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
   
@@ -30,7 +29,7 @@
 				<li><a href="index.html">HOME</a></li>
 				<li><a href="about.html">ABOUT</a></li>
 				<li><a href="contact.html">CONTACT</a></li>
-        <li class="active"><a href="koleksi.html">COLLECTION</a></li>
+        			<li class="active"><a href="koleksi.html">COLLECTION</a></li>
 			</ul>
 		</div>
 	</header>
@@ -42,318 +41,553 @@
     			</div>
   		</section>
 
-
+<head>
     <style>
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .search-bar {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-input {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            width: 400px;
+            max-width: 100%;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            outline: none;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
-        
-        .hero-bg {
-            background-image: url('https://i.pinimg.com/736x/5d/25/3a/5d253a9a32c95809998b9366bdbc7111.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        
+
         .book-card:hover {
             transform: translateY(-5px);
-            transition: transform 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
-        
-        .book-cover:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
+
+        .book-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        .book-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-info {
+            padding: 20px;
+        }
+
+        .book-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .book-author {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .book-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .star {
+            color: #ffc107;
+            margin-right: 5px;
+        }
+
+        .rating-score {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .book-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .book-format {
+            background: #e9ecef;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .book-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-detail {
+            background: #4285f4;
+            color: white;
+        }
+
+        .btn-detail:hover {
+            background: #3367d6;
+            transform: scale(1.02);
+        }
+
+        .btn-download {
+            background: #34a853;
+            color: white;
+        }
+
+        .btn-download:hover {
+            background: #2d8f47;
+            transform: scale(1.02);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        .download-progress {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #34a853;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Hero Section with Background Image -->
-    <div class="hero-bg relative h-96">
-        <!-- Dark Overlay -->
-        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-        
-        <!-- Content -->
-        <div class="relative z-10 flex items-center justify-center h-full text-center px-6">
-            <div>
-                <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">Koleksi Buku Kami</h1>
-                <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto">
-                    Temukan beragam buku dari berbagai genre dan penulis favorit Anda untuk memperluas wawasan.
-                </p>
-            </div>
+	
+    <div class="container">
+        <div class="header">
+            <h1>📖 Koleksi Buku Digital</h1>
+            <p>Perpustakaan digital dengan ribuan buku berkualitas</p>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Cari judul buku, penulis, atau genre..." id="searchInput">
+        </div>
+
+        <div class="books-grid" id="booksGrid">
+            <!-- Book cards will be generated here -->
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto p-6">
-        <!-- Search and Filter -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8 -mt-20 relative z-20">
-            <div class="flex flex-col md:flex-row gap-4 items-center">
-                <!-- Search Bar -->
-                <div class="relative flex-1">
-                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Cari judul buku atau nama penulis..."
-                        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                </div>
-
-                <!-- Category Filter -->
-                <div class="flex items-center gap-2">
-                    <svg class="text-gray-400 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
-                    </svg>
-                    <select id="categoryFilter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        <option value="Semua">Semua</option>
-                        <option value="Novel">Novel</option>
-                        <option value="Keuangan">Keuangan</option>
-                        <option value="Filosofi">Filosofi</option>
-                        <option value="Self-Help">Self-Help</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <!-- Books Grid -->
-        <div id="booksGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <!-- Books will be populated by JavaScript -->
-        </div>
-
-        <!-- No Results Message -->
-        <div id="noResults" class="text-center py-12 hidden">
-            <div class="text-gray-400 text-6xl mb-4">📚</div>
-            <h3 class="text-xl font-medium text-gray-600 mb-2">Tidak ada buku ditemukan</h3>
-            <p class="text-gray-500">Coba ubah kata kunci pencarian atau filter kategori</p>
-        </div>
-
-        <!-- Summary -->
-        <div class="mt-8 text-center">
-            <p id="booksSummary" class="text-gray-600"></p>
+    <!-- Modal for book details -->
+    <div class="modal" id="bookModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalContent"></div>
         </div>
     </div>
 
     <script>
-        // Data buku
+        // Data buku dari koleksi Fanny Fahira
         const books = [
             {
                 id: 1,
                 title: "Edensor",
                 author: "Andrea Hirata",
                 category: "Novel",
-                cover: "https://upload.wikimedia.org/wikipedia/id/thumb/e/ec/Edensor_sampul.jpg/250px-Edensor_sampul.jpg",
                 rating: 4.8,
                 pages: 202,
-                format: "PDF",
                 size: "2.1 MB",
-                pdfUrl: "https://drive.google.com/file/d/1NcfQLKBptyDj4TtJ3hMMK2FeUJyjLbeL/view"
+                format: "PDF",
+                image: "https://upload.wikimedia.org/wikipedia/id/thumb/e/ec/Edensor_sampul.jpg/250px-Edensor_sampul.jpg",
+                description: "Novel ketiga dari tetralogi Laskar Pelangi. Mengisahkan perjalanan Ikal dan Arai ke Eropa untuk menuntut ilmu.",
+                genre: "Novel",
+                year: "2007",
+                downloadUrl: "https://drive.google.com/file/d/1NcfQLKBptyDj4TtJ3hMMK2FeUJyjLbeL/view"
             },
             {
                 id: 2,
                 title: "Pada Senja Yang Membawamu Pergi",
                 author: "Boy Chandra",
                 category: "Novel",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1471093744i/31438243.jpg",
                 rating: 4.9,
                 pages: 260,
-                format: "PDF",
                 size: "1.8 MB",
-                pdfUrl: "https://drive.google.com/file/d/1WFZpvbEd_HiKWryhuH6Zmj8gPmQuTne3/view"
+                format: "PDF",
+                image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1471093744i/31438243.jpg",
+                description: "Kumpulan puisi tentang cinta, kehilangan, dan perjuangan hidup yang ditulis dengan bahasa yang indah.",
+                genre: "Novel",
+                year: "2016",
+                downloadUrl: "https://drive.google.com/file/d/1WFZpvbEd_HiKWryhuH6Zmj8gPmQuTne3/view"
             },
             {
                 id: 3,
                 title: "Bulan Terbelah di Langit Amerika",
                 author: "Hanum Salsabiela Rais dan Rangga Almahendra",
                 category: "Novel",
-                cover: "https://balitbangdiklat.kemenag.go.id/images/resensi/Langit.jpg",
                 rating: 4.7,
                 pages: 256,
-                format: "PDF",
                 size: "2.5 MB",
-                pdfUrl: "https://drive.google.com/file/d/1_tKYVx8sDRHpa7X5yMeVSZWfYB2y7eCM/view"
+                format: "PDF",
+                image: "https://balitbangdiklat.kemenag.go.id/images/resensi/Langit.jpg",
+                description: "Kisah nyata tentang pengalaman hidup di Amerika dan perjuangan memahami Islam di tengah prasangka.",
+                genre: "Novel",
+                year: "2014",
+                downloadUrl: "https://drive.google.com/file/d/1_tKYVx8sDRHpa7X5yMeVSZWfYB2y7eCM/view"
             },
             {
                 id: 4,
                 title: "Dunia Sophie",
                 author: "Jostein Gaarder",
                 category: "Filosofi",
-                cover: "https://www.gramedia.com/blog/content/images/2022/02/Dunia-Sophie.jpg",
                 rating: 4.6,
                 pages: 801,
-                format: "PDF",
                 size: "3.2 MB",
-                pdfUrl: "https://intanuzulis.home.blog/wp-content/uploads/2020/11/dunia-sophie-sebuah-novel-filsafat-1.pdf"
+                format: "PDF",
+                image: "https://www.gramedia.com/blog/content/images/2022/02/Dunia-Sophie.jpg",
+                description: "Novel filosofi yang mengajarkan sejarah pemikiran dunia melalui petualangan gadis bernama Sophie.",
+                genre: "Filosofi",
+                year: "1991",
+                downloadUrl: "https://intanuzulis.home.blog/wp-content/uploads/2020/11/dunia-sophie-sebuah-novel-filsafat-1.pdf"
             },
             {
                 id: 5,
                 title: "The Little Book of Stoicism ; Timeless Wisdom to Gain Resilience, Confidence, and Calmness",
                 author: "Jonas Salzgeber",
-                category: "Self-help",
-                cover: "https://m.media-amazon.com/images/I/61TYJajU9-L.jpg",
+                category: "Self-Help",
                 rating: 4.8,
                 pages: 249,
-                format: "PDF",
                 size: "2.3 MB",
-                pdfUrl: "https://drive.google.com/file/d/1Nyx29wyr5c65NDewJx-qRhRQ1ZPTuX6E/view?usp=sharing"
+                format: "PDF",
+                image: "https://m.media-amazon.com/images/I/61TYJajU9-L.jpg",
+                description: "Panduan praktis untuk menerapkan filosofi Stoik dalam kehidupan modern untuk mencapai ketenangan batin.",
+                genre: "Self-Help",
+                year: "2019",
+                downloadUrl: "https://drive.google.com/file/d/1Nyx29wyr5c65NDewJx-qRhRQ1ZPTuX6E/view?usp=sharing"
             },
             {
                 id: 6,
                 title: "Model Problem Based Learning",
                 author: "Syamsidah dan Hamidah Suryani",
                 category: "Text Book",
-                cover: "https://images.routledge.com/common/jackets/crclarge/978074943/9780749434922.jpg",
                 rating: 4.5,
                 pages: 102,
-                format: "PDF",
                 size: "1.5 MB",
-                pdfUrl: "https://eprints.unm.ac.id/9011/1/Buku%20Model%20Problem%20Based%20Learning_Watermark.pdf"
+                format: "PDF",
+                image: "https://images.routledge.com/common/jackets/crclarge/978074943/9780749434922.jpg",
+                description: "Buku panduan untuk pendidik tentang implementasi model pembelajaran berbasis masalah di kelas.",
+                genre: "Text Book",
+                year: "2018",
+                downloadUrl: "https://eprints.unm.ac.id/9011/1/Buku%20Model%20Problem%20Based%20Learning_Watermark.pdf"
             },
             {
                 id: 7,
                 title: "The Midnight Library",
                 author: "Matt Haig",
                 category: "Novel",
-                cover: "https://cdn.gramedia.com/uploads/items/9786020649320_the_midnight_library_cov.jpg",
                 rating: 4.9,
                 pages: 320,
-                format: "PDF",
                 size: "2.8 MB",
-                pdfUrl: "https://icrrd.com/public/media/14-05-2021-102937The-Midnight%20-Library-Matt%20Haig.pdf"
+                format: "PDF",
+                image: "https://cdn.gramedia.com/uploads/items/9786020649320_the_midnight_library_cov.jpg",
+                description: "Novel tentang perpustakaan yang berisi kehidupan alternatif yang bisa dipilih oleh protagonis.",
+                genre: "Novel",
+                year: "2020",
+                downloadUrl: "https://icrrd.com/public/media/14-05-2021-102937The-Midnight%20-Library-Matt%20Haig.pdf"
             },
             {
                 id: 8,
                 title: "Naruto Hidden Series: Kakashi Hidden - Hyouten no Ikazuchi",
                 author: "Masashi Kishimoto",
                 category: "Novel",
-                cover: "https://online.anyflip.com/pulmh/eevs/files/large/5f05e70ab8663ab34bc42f45f6c10855.jpg?1687340366",
                 rating: 4.6,
                 pages: 167,
-                format: "PDF",
                 size: "1.2 MB",
-                pdfUrl: "https://ia802206.us.archive.org/3/items/manga_Naruto_Hiden_Series/Naruto%20Hiden%20Series%20-%20Volume%2001%20-%20Kakashi%27s%20Story%20-%20Kakashi%20Hiden%20-%20Hyouten%20no%20Ikazuchi%20-%20Lightning%20in%20the%20Frozen%20Sky%20%5BVIZ%5D%5BCalibreV1DPC%5D.pdf"
+                format: "PDF",
+                image: "https://online.anyflip.com/pulmh/eevs/files/large/5f05e70ab8663ab34bc42f45f6c10855.jpg?1687340366",
+                description: "Novel spin-off dari series Naruto yang menceritakan kisah tersembunyi dari Kakashi Hatake.",
+                genre: "Novel",
+                year: "2015",
+                downloadUrl: "https://ia802206.us.archive.org/3/items/manga_Naruto_Hiden_Series/Naruto%20Hiden%20Series%20-%20Volume%2001%20-%20Kakashi%27s%20Story%20-%20Kakashi%20Hiden%20-%20Hyouten%20no%20Ikazuchi%20-%20Lightning%20in%20the%20Frozen%20Sky%20%5BVIZ%5D%5BCalibreV1DPC%5D.pdf"
             }
         ];
 
         let filteredBooks = [...books];
 
-        // Fungsi untuk membuat card buku
-        function createBookCard(book) {
-            return `
-                <div class="book-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <!-- Book Cover -->
-                    <div class="relative h-64 overflow-hidden">
-                        <img
-                            src="${book.cover}"
-                            alt="${book.title}"
-                            class="book-cover w-full h-full object-cover"
-                        />
-                        <div class="absolute top-2 right-2 bg-white rounded-full px-2 py-1 shadow-md">
-                            <span class="text-xs font-semibold text-gray-600">${book.format}</span>
-                        </div>
+        function renderBooks() {
+            const grid = document.getElementById('booksGrid');
+            grid.innerHTML = '';
+
+            filteredBooks.forEach(book => {
+                const bookCard = document.createElement('div');
+                bookCard.className = 'book-card';
+                bookCard.innerHTML = `
+                    <div class="book-image">
+                        <img src="${book.image}" alt="${book.title}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999;font-size:14px;&quot;>${book.title} Cover</div>'">
                     </div>
-
-                    <!-- Book Info -->
-                    <div class="p-4">
-                        <h3 class="font-bold text-lg text-gray-800 mb-1 line-clamp-2">${book.title}</h3>
-                        <p class="text-sm text-gray-600 mb-2">${book.author}</p>
-                        
-                        <div class="flex items-center gap-1 mb-2">
-                            <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <span class="text-sm font-medium text-gray-700">${book.rating}</span>
+                    <div class="book-info">
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-author">${book.author}</p>
+                        <div class="book-rating">
+                            <span class="star">⭐</span>
+                            <span class="rating-score">${book.rating}</span>
                         </div>
-
-                        <div class="flex justify-between text-xs text-gray-500 mb-3">
+                        <div class="book-meta">
                             <span>${book.pages} halaman</span>
                             <span>${book.size}</span>
+                            <span class="book-format">${book.format}</span>
                         </div>
-
-                        <div class="flex gap-2">
-                            <button
-                                onclick="viewDetail(${book.id})"
-                                class="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
-                            >
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                </svg>
-                                Detail
+                        <div class="book-actions">
+                            <button class="btn btn-detail" onclick="showBookDetail(${book.id})">
+                                👁️ Detail
                             </button>
-                            <button
-                                onclick="readBook(${book.id})"
-                                class="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm"
-                            >
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253z"></path>
-                                </svg>
-                                Baca
+                            <button class="btn btn-download" onclick="downloadBook(${book.id})">
+                                ⬇️ Download
                             </button>
+                        </div>
+                        <div class="download-progress" id="progress-${book.id}">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill-${book.id}"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
-        }
-
-        // Fungsi untuk render buku
-        function renderBooks() {
-            const booksGrid = document.getElementById('booksGrid');
-            const noResults = document.getElementById('noResults');
-            const booksSummary = document.getElementById('booksSummary');
-
-            if (filteredBooks.length === 0) {
-                booksGrid.innerHTML = '';
-                noResults.classList.remove('hidden');
-            } else {
-                noResults.classList.add('hidden');
-                booksGrid.innerHTML = filteredBooks.map(book => createBookCard(book)).join('');
-            }
-
-            // Update summary
-            booksSummary.textContent = `Menampilkan ${filteredBooks.length} dari ${books.length} buku`;
-        }
-
-        // Fungsi untuk filter buku
-        function filterBooks() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const selectedCategory = document.getElementById('categoryFilter').value;
-
-            filteredBooks = books.filter(book => {
-                const matchesSearch = book.title.toLowerCase().includes(searchTerm) ||
-                                    book.author.toLowerCase().includes(searchTerm);
-                const matchesCategory = selectedCategory === 'Semua' || book.category === selectedCategory;
-                return matchesSearch && matchesCategory;
+                `;
+                grid.appendChild(bookCard);
             });
+        }
 
+        function showBookDetail(bookId) {
+            const book = books.find(b => b.id === bookId);
+            const modal = document.getElementById('bookModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <h2 style="margin-bottom: 20px; color: #333;">${book.title}</h2>
+                <div style="margin-bottom: 15px;">
+                    <strong>Penulis:</strong> ${book.author}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>Kategori:</strong> ${book.category}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>Tahun Terbit:</strong> ${book.year}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>Halaman:</strong> ${book.pages}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>Ukuran File:</strong> ${book.size}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>Format:</strong> ${book.format}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>Rating:</strong> ⭐ ${book.rating}/5
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <strong>Deskripsi:</strong>
+                    <p style="margin-top: 8px; line-height: 1.6; color: #555;">${book.description}</p>
+                </div>
+                <button class="btn btn-download" onclick="downloadBook(${book.id})" style="width: 100%;">
+                    ⬇️ Download Sekarang
+                </button>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('bookModal').style.display = 'none';
+        }
+
+        function downloadBook(bookId) {
+            const book = books.find(b => b.id === bookId);
+            const progressContainer = document.getElementById(`progress-${bookId}`);
+            const progressFill = document.getElementById(`progressFill-${bookId}`);
+            
+            // Show progress bar
+            progressContainer.style.display = 'block';
+            
+            // Simulate download progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Hide progress bar after completion
+                    setTimeout(() => {
+                        progressContainer.style.display = 'none';
+                        progressFill.style.width = '0%';
+                        
+                        // Open the actual PDF/download link
+                        window.open(book.downloadUrl, '_blank');
+                    }, 1000);
+                    
+                    // Show success message
+                    alert(`✅ "${book.title}" berhasil didownload!`);
+                }
+                progressFill.style.width = progress + '%';
+            }, 200);
+        }
+
+        function searchBooks() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            filteredBooks = books.filter(book => 
+                book.title.toLowerCase().includes(searchTerm) ||
+                book.author.toLowerCase().includes(searchTerm) ||
+                book.category.toLowerCase().includes(searchTerm)
+            );
             renderBooks();
         }
 
         // Event listeners
-        document.getElementById('searchInput').addEventListener('input', filterBooks);
-        document.getElementById('categoryFilter').addEventListener('change', filterBooks);
+        document.getElementById('searchInput').addEventListener('input', searchBooks);
 
-        // Fungsi untuk tombol aksi
-        function viewDetail(bookId) {
-            const book = books.find(b => b.id === bookId);
-            alert(`Menampilkan detail untuk: ${book.title}`);
-        }
+        // Close modal when clicking outside
+        document.getElementById('bookModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
 
-        function readBook(bookId) {
-            const book = books.find(b => b.id === bookId);
-            // Buka PDF di tab baru
-            window.open(book.pdfUrl, '_blank');
-        }
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
 
-        // Render awal
+        // Initial render
         renderBooks();
     </script>
 
-
-	
 	
     <!-- footer -->
     <footer class="fannyfahira-footer">
