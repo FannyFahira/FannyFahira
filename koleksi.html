@@ -201,18 +201,18 @@
                 bookCard.className = 'book-card';
                 bookCard.innerHTML = `
                     <div class="koleksi-book-image">
-                        <img src="${koleksi.book.image}" alt="${koleksi.book.title}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999;font-size:14px;&quot;>${koleksi.book.title} Cover</div>'">
+                        <img src="${book.image}" alt="${book.title}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999;font-size:14px;&quot;>${book.title} Cover</div>'">
                     </div>
                     <div class="koleksi-book-info">
-                        <h3 class="book-title">${koleksi.book.title}</h3>
-                        <p class="book-author">${koleksi.book.author}</p>
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-author">${book.author}</p>
                         <div class="koleksi.book-rating">
                             <span class="star">⭐</span>
-                            <span class="rating-score">${koleksi.book.rating}</span>
+                            <span class="rating-score">${book.rating}</span>
                         </div>
                         <div class="koleksi-book-meta">
-                            <span>${koleksi.book.pages} halaman</span>
-                            <span>${koleksi.book.size}</span>
+                            <span>${book.pages} halaman</span>
+                            <span>${book.size}</span>
                             <span class="book-format">${koleksi.book.format}</span>
                         </div>
                         <div class="koleksi-book-actions">
@@ -240,33 +240,33 @@
             const modalContent = document.getElementById('modalContent');
             
             modalContent.innerHTML = `
-                <h2 style="margin-bottom: 20px; color: #333;">${koleksi.book.title}</h2>
+                <h2 style="margin-bottom: 20px; color: #333;">${book.title}</h2>
                 <div style="margin-bottom: 15px;">
-                    <strong>Penulis:</strong> ${koleksi.book.author}
+                    <strong>Penulis:</strong> ${book.author}
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Kategori:</strong> ${koleksi.book.category}
+                    <strong>Kategori:</strong> ${book.category}
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Tahun Terbit:</strong> ${koleksi.book.year}
+                    <strong>Tahun Terbit:</strong> ${book.year}
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Halaman:</strong> ${koleksi.book.pages}
+                    <strong>Halaman:</strong> ${book.pages}
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Ukuran File:</strong> ${koleksi.book.size}
+                    <strong>Ukuran File:</strong> ${book.size}
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Format:</strong> ${koleksi.book.format}
+                    <strong>Format:</strong> ${book.format}
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Rating:</strong> ⭐ ${koleksi.book.rating}/5
+                    <strong>Rating:</strong> ⭐ ${book.rating}/5
                 </div>
                 <div style="margin-bottom: 20px;">
                     <strong>Deskripsi:</strong>
-                    <p style="margin-top: 8px; line-height: 1.6; color: #555;">${koleksi.book.description}</p>
+                    <p style="margin-top: 8px; line-height: 1.6; color: #555;">${book.description}</p>
                 </div>
-                <button class="btn btn-download" onclick="downloadBook(${koleksi.book.id})" style="width: 100%;">
+                <button class="btn btn-download" onclick="downloadBook(${book.id})" style="width: 100%;">
                     ⬇️ Download Sekarang
                 </button>
             `;
