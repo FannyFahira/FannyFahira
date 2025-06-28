@@ -582,7 +582,7 @@ section h3 {
 @media (max-width: 768px) {
     .books-grid {
         grid-template-columns: 1fr;
-        }
+    }
             
     .search-input {
         width: 100%;
