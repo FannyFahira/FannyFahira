@@ -41,265 +41,18 @@
     			</div>
   		</section>
 
-<head>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f8ff;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #6D7993;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .search-bar {
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .search-input {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 25px;
-            width: 400px;
-            max-width: 100%;
-            font-size: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            outline: none;
-        }
-
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
-        }
-
-        .book-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .book-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .book-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-        }
-
-        .book-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .book-info {
-            padding: 20px;
-        }
-
-        .book-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
-
-        .book-author {
-            color: #666;
-            font-size: 1rem;
-            margin-bottom: 12px;
-        }
-
-        .book-rating {
-            display: flex;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .star {
-            color: #ffc107;
-            margin-right: 5px;
-        }
-
-        .rating-score {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .book-meta {
-            display: flex;
-            justify-content: space-between;
-            color: #777;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .book-format {
-            background: #e9ecef;
-            padding: 4px 8px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: #495057;
-        }
-
-        .book-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-detail {
-            background: #4285f4;
-            color: white;
-        }
-
-        .btn-detail:hover {
-            background: #3367d6;
-            transform: scale(1.02);
-        }
-
-        .btn-download {
-            background: #34a853;
-            color: white;
-        }
-
-        .btn-download:hover {
-            background: #2d8f47;
-            transform: scale(1.02);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #999;
-        }
-
-        .modal-close:hover {
-            color: #333;
-        }
-
-        .download-progress {
-            display: none;
-            margin-top: 10px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: #e9ecef;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #34a853;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            .books-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .search-input {
-                width: 100%;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
-</head>
 	
     <div class="container">
         <div class="header">
-            <h1>📖 Koleksi Buku Digital</h1>
+            <h3>📖 Koleksi Buku Digital</h3>
             <p>Temukan buku dengan berbagai pilihan tema dan genre sesuai kebutuhan Anda</p>
         </div>
 
         <div class="search-bar">
-            <input type="text" class="search-input" placeholder="Cari judul buku, penulis, atau genre..." id="searchInput">
+            <input type="text" class="search-input" placeholder="🔍︎ Cari judul buku, penulis, atau genre..." id="searchInput">
         </div>
 
-        <div class="books-grid" id="booksGrid">
+        <div class="koleksi-books-grid" id="booksGrid">
             <!-- Book cards will be generated here -->
         </div>
     </div>
@@ -447,22 +200,22 @@
                 const bookCard = document.createElement('div');
                 bookCard.className = 'book-card';
                 bookCard.innerHTML = `
-                    <div class="book-image">
-                        <img src="${book.image}" alt="${book.title}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999;font-size:14px;&quot;>${book.title} Cover</div>'">
+                    <div class="koleksi-book-image">
+                        <img src="${koleksi.book.image}" alt="${koleksi.book.title}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999;font-size:14px;&quot;>${koleksi.book.title} Cover</div>'">
                     </div>
-                    <div class="book-info">
-                        <h3 class="book-title">${book.title}</h3>
-                        <p class="book-author">${book.author}</p>
-                        <div class="book-rating">
+                    <div class="koleksi-book-info">
+                        <h3 class="book-title">${koleksi.book.title}</h3>
+                        <p class="book-author">${koleksi.book.author}</p>
+                        <div class="koleksi.book-rating">
                             <span class="star">⭐</span>
-                            <span class="rating-score">${book.rating}</span>
+                            <span class="rating-score">${koleksi.book.rating}</span>
                         </div>
-                        <div class="book-meta">
-                            <span>${book.pages} halaman</span>
-                            <span>${book.size}</span>
-                            <span class="book-format">${book.format}</span>
+                        <div class="koleksi-book-meta">
+                            <span>${koleksi.book.pages} halaman</span>
+                            <span>${koleksi.book.size}</span>
+                            <span class="book-format">${koleksi.book.format}</span>
                         </div>
-                        <div class="book-actions">
+                        <div class="koleksi-book-actions">
                             <button class="btn btn-detail" onclick="showBookDetail(${book.id})">
                                 👁️ Detail
                             </button>
@@ -487,33 +240,33 @@
             const modalContent = document.getElementById('modalContent');
             
             modalContent.innerHTML = `
-                <h2 style="margin-bottom: 20px; color: #333;">${book.title}</h2>
+                <h2 style="margin-bottom: 20px; color: #333;">${koleksi.book.title}</h2>
                 <div style="margin-bottom: 15px;">
-                    <strong>Penulis:</strong> ${book.author}
+                    <strong>Penulis:</strong> ${koleksi.book.author}
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Kategori:</strong> ${book.category}
+                    <strong>Kategori:</strong> ${koleksi.book.category}
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Tahun Terbit:</strong> ${book.year}
+                    <strong>Tahun Terbit:</strong> ${koleksi.book.year}
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Halaman:</strong> ${book.pages}
+                    <strong>Halaman:</strong> ${koleksi.book.pages}
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Ukuran File:</strong> ${book.size}
+                    <strong>Ukuran File:</strong> ${koleksi.book.size}
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Format:</strong> ${book.format}
+                    <strong>Format:</strong> ${koleksi.book.format}
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Rating:</strong> ⭐ ${book.rating}/5
+                    <strong>Rating:</strong> ⭐ ${koleksi.book.rating}/5
                 </div>
                 <div style="margin-bottom: 20px;">
                     <strong>Deskripsi:</strong>
-                    <p style="margin-top: 8px; line-height: 1.6; color: #555;">${book.description}</p>
+                    <p style="margin-top: 8px; line-height: 1.6; color: #555;">${koleksi.book.description}</p>
                 </div>
-                <button class="btn btn-download" onclick="downloadBook(${book.id})" style="width: 100%;">
+                <button class="btn btn-download" onclick="downloadBook(${koleksi.book.id})" style="width: 100%;">
                     ⬇️ Download Sekarang
                 </button>
             `;
