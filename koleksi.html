@@ -47,23 +47,24 @@
     <div class="container">
         <h3>📖 Koleksi Buku Digital</h3>
         <p align="center">Temukan buku dengan berbagai pilihan tema dan genre sesuai kebutuhan Anda</p>
-    </div>
 
-    <div class="search-container">
-        <input type="text" class="search-box" id="searchInput" placeholder="Cari judul buku, penulis, atau kategori...">
-    </div>
+    	<div class="koleksi-search-container">
+        	<input type="text" class="koleksi-search-box" id="searchInput" 
+              		placeholder="Cari judul buku, penulis, atau kategori...">
+    	</div>
 
-    <div class="koleksi-books-grid" id="booksGrid">
-        <!-- Book cards will be generated here -->
-    </div>
+    	<div class="koleksi-books-grid" id="booksGrid">
+        	<!-- Book cards will be generated here -->
+    	</div>
 
-    <div class="no-results" id="noResults" style="display: none;">
-        <p>📖 Tidak ada buku yang ditemukan</p>
-        <p style="font-size: 1rem; margin-top: 10px;">Coba kata kunci yang berbeda</p>
+    	<div class="koleksi-no-results" id="noResults" style="display: none;">
+        	<p>📖 Tidak ada buku yang ditemukan</p>
+        	<p>Coba kata kunci yang berbeda</p>
+    	</div>
     </div>
 </section>
 	
-    <script>
+<script>
         // Data buku dari koleksi Fanny Fahira
         const books = [
             {
@@ -166,142 +167,84 @@
 
 	let filteredBooks = [...books];
 
-        function renderBooks(booksToRender) {
-            const booksGrid = document.getElementById('booksGrid');
-            const noResults = document.getElementById('noResults');
-            
-            if (booksToRender.length === 0) {
-                booksGrid.innerHTML = '';
-                noResults.style.display = 'block';
-                return;
-            }
-            
-            noResults.style.display = 'none';
-            
-            booksGrid.innerHTML = booksToRender.map(book => `
-                <div class="koleksi-book-card fade-in">
-                    <div class="book-cover-container">
-                        <img src="${book.coverUrl}" alt="${book.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                        <div class="book-cover-placeholder" style="display: none;">
-                            ${book.title}
-                        </div>
-                        <div class="category-badge">${book.category}</div>
+    // Render books
+    function renderBooks(booksToRender) {
+        const booksGrid = document.getElementById('booksGrid');
+        const noResults = document.getElementById('noResults');
+        
+        if (booksToRender.length === 0) {
+            booksGrid.innerHTML = '';
+            noResults.style.display = 'block';
+            return;
+        }
+        
+        noResults.style.display = 'none';
+        
+        booksGrid.innerHTML = booksToRender.map(book => `
+            <div class="koleksi-book-card">
+                <div class="koleksi-book-cover">
+                    <img src="${book.coverUrl}" alt="${book.title}" 
+                         onerror="this.onerror=null;this.src='https://via.placeholder.com/200x300?text=No+Cover'">
+                </div>
+                <div class="koleksi-book-info">
+                    <h3 class="koleksi-book-title">${book.title}</h3>
+                    <p class="koleksi-book-author">${book.author}</p>
+                    <div class="koleksi-book-meta">
+                        <span>⭐ ${book.rating}</span>
+                        <span>${book.pages} hlm</span>
+                        <span>${book.size}</span>
                     </div>
-                    <div class="book-info">
-                        <h3 class="book-title">${book.title}</h3>
-                        <p class="book-author">${book.author}</p>
-                        <div class="book-stats">
-                            <div class="rating">
-                                <span class="star">⭐</span>
-                                <span>${book.rating}</span>
-                            </div>
-                            <span>${book.pages} halaman</span>
-                            <span>${book.size}</span>
-                            <span style="background: #ef4444; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">PDF</span>
-                        </div>
-                        <div class="book-actions">
-                            <button class="btn btn-detail" onclick="showDetail(${book.id})">
-                                🔍 Detail
-                            </button>
-                            <a href="${book.pdfUrl}" class="btn btn-download" target="_blank">
-                                ⬇️ Download
-                            </a>
-                        </div>
+                    <div class="koleksi-book-actions">
+                        <button class="koleksi-btn koleksi-btn-detail" 
+                                onclick="showBookDetail(${book.id})">
+                            🔍 Detail
+                        </button>
+                        <a href="${book.pdfUrl}" class="koleksi-btn koleksi-btn-download" 
+                           target="_blank">
+                            ⬇️ Download
+                        </a>
                     </div>
                 </div>
-            `).join('');
-        }
+            </div>
+        `).join('');
+    }
 
-        function showDetail(bookId) {
-            const book = books.find(b => b.id === bookId);
-            if (book) {
-                const modal = document.createElement('div');
-                modal.className = 'modal';
-                
-                const modalContent = document.createElement('div');
-                modalContent.className = 'modal-content fade-in';
-                
-                modalContent.innerHTML = `
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        <div class="modal-cover">
-                            <img src="${book.coverUrl}" alt="${book.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                            <div class="book-cover-placeholder" style="display: none;">${book.title}</div>
-                        </div>
-                        <h2 style="color: #1f2937; margin-bottom: 8px; font-size: 1.5rem;">${book.title}</h2>
-                        <p style="color: #6b7280; margin-bottom: 12px;">${book.author}</p>
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; font-size: 0.875rem; color: #6b7280;">
-                            <div style="display: flex; align-items: center; gap: 4px;">
-                                <span style="color: #fbbf24;">⭐</span>
-                                <span>${book.rating}</span>
-                            </div>
-                            <span>${book.pages} halaman</span>
-                            <span>${book.size}</span>
-                        </div>
-                        <span style="background: rgba(113, 128, 150, 0.1); color: #4a5568; padding: 6px 12px; border-radius: 15px; font-size: 0.875rem; font-weight: 600;">${book.category}</span>
-                    </div>
-                    
-                    <div style="margin-bottom: 24px;">
-                        <h3 style="color: #1f2937; margin-bottom: 12px; font-size: 1.1rem;">📖 Deskripsi</h3>
-                        <p style="color: #4b5563; line-height: 1.6;">${book.description}</p>
-                    </div>
-                    
-                    <div style="display: flex; gap: 12px; justify-content: center;">
-                        <a href="${book.pdfUrl}" target="_blank" style="background: #10b981; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 6px;">⬇️ Download PDF</a>
-                        <button onclick="this.closest('.modal').remove()" style="background: #6b7280; color: white; padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600;">✕ Tutup</button>
-                    </div>
-                `;
-                
-                modal.appendChild(modalContent);
-                document.body.appendChild(modal);
-                
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.remove();
-                    }
-                });
-                
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') {
-                        modal.remove();
-                    }
-                });
-            }
-        }
-
-        function searchBooks(query) {
-            const searchTerm = query.toLowerCase().trim();
-            
-            if (searchTerm === '') {
-                filteredBooks = [...books];
-            } else {
-                filteredBooks = books.filter(book => 
-                    book.title.toLowerCase().includes(searchTerm) ||
-                    book.author.toLowerCase().includes(searchTerm) ||
-                    book.category.toLowerCase().includes(searchTerm) ||
-                    book.description.toLowerCase().includes(searchTerm)
-                );
-            }
-            
-            renderBooks(filteredBooks);
-        }
-
-        // Event listeners
-        const searchInput = document.getElementById('searchInput');
+    // Search books
+    function searchBooks(query) {
+        const searchTerm = query.toLowerCase().trim();
+        let filteredBooks;
         
-        searchInput.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') {
-                searchBooks(e.target.value);
-            }
-        });
+        if (!searchTerm) {
+            filteredBooks = [...books];
+        } else {
+            filteredBooks = books.filter(book => 
+                book.title.toLowerCase().includes(searchTerm) ||
+                book.author.toLowerCase().includes(searchTerm) ||
+                book.category.toLowerCase().includes(searchTerm)
+            );
+        }
+        
+        renderBooks(filteredBooks);
+    }
 
-        searchInput.addEventListener('input', (e) => {
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        renderBooks(books);
+        
+        // Search event listener
+        document.getElementById('searchInput').addEventListener('input', (e) => {
             searchBooks(e.target.value);
         });
+    });
 
-        // Initialize
-        renderBooks(books);
-    </script>
-
+    // Show book detail (simple version)
+    function showBookDetail(bookId) {
+        const book = books.find(b => b.id === bookId);
+        if (book) {
+            alert(`Judul: ${book.title}\nPenulis: ${book.author}\n\nDeskripsi:\n${book.description}`);
+        }
+    }
+</script>
 	
     <!-- footer -->
     <footer class="fannyfahira-footer">
