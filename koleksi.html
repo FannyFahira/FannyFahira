@@ -43,220 +43,240 @@
   		</section>
 
     <style>
-	    	.search-bar {
-            		    margin-bottom: 30px;
-            		    display: flex;
-            		    justify-content: center;
-	   	}
+	.search-container {
+            max-width: 400px;
+            margin: 0 auto 60px;
+            position: relative;
+        }
 
-		.search-input {
-		            padding: 12px 20px;
-		            border: none;
-		            border-radius: 25px;
-		            width: 400px;
-		            max-width: 100%;
-		            font-size: 16px;
-		            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-		            outline: none;
-		}
-		
-		
-		.koleksi-books-grid {
-		    display: grid;
-		    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-		    gap: 20px;
-		}
-		
-		.koleksi-book-card {
-		    background: white;
-		    border-radius: 15px;
-		    overflow: hidden;
-		    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-		    transition: all 0.3s ease;
-		    cursor: pointer;
-		}
-		
-		.koleksi-book-card:hover {
-		    transform: translateY(-5px);
-		    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-		}
-		
-		.koleksi-book-image {
-		    width: 100%;
-		    height: 200px;
-		    object-fit: cover;
-		    background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-		}
-		
-		.koleksi-book-image img {
-		    width: 100%;
-		    height: 100%;
-		    object-fit: cover;
-		}
-		
-		.koleksi-book-info {
-		    padding: 20px;
-		}
-		
-		.koleksi-book-title {
-		    font-size: 1.3rem;
-		    font-weight: 600;
-		    color: #333;
-		    margin-bottom: 8px;
-		    line-height: 1.3;
-		}
-		
-		.koleksi-book-author {
-		    color: #666;
-		    font-size: 1rem;
-		    margin-bottom: 12px;
-		}
-		
-		.koleksi-book-rating {
-		    display: flex;
-		    align-items: center;
-		    margin-bottom: 8px;
-		}
-		
-		.star {
-		    color: #ffc107;
-		    margin-right: 5px;
-		}
-		
-		.rating-score {
-		    font-weight: 600;
-		    color: #333;
-		}
-		
-		.koleksi-book-meta {
-		    display: flex;
-		    justify-content: space-between;
-		    color: #777;
-		    font-size: 0.9rem;
-		    margin-bottom: 15px;
-		}
-		
-		.koleksi-book-format {
-		    background: #e9ecef;
-		    padding: 4px 8px;
-		    border-radius: 15px;
-		    font-size: 0.8rem;
-		    font-weight: 500;
-		    color: #495057;
-		}
-		
-		.koleksi-book-actions {
-		    display: flex;
-		    gap: 10px;
-		}
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            background: white;
+            outline: none;
+            transition: all 0.3s ease;
+        }
 
-	    	.btn {
-		            flex: 1;
-		            padding: 12px;
-		            border: none;
-		            border-radius: 8px;
-		            font-size: 14px;
-		            font-weight: 500;
-		            cursor: pointer;
-		            transition: all 0.3s ease;
-		            display: flex;
-		            align-items: center;
-		            justify-content: center;
-		            gap: 8px;
-		}
-		
-		.btn-detail {
-		            background: #4285f4;
-		            color: white;
-		}
-		
-		.btn-detail:hover {
-		            background: #3367d6;
-		            transform: scale(1.02);
-		}
-		
-		.btn-download {
-		            background: #34a853;
-		            color: white;
-		}
-		
-		.btn-download:hover {
-		            background: #2d8f47;
-		            transform: scale(1.02);
-		}
-		
-		.koleksi-modal {
-		    display: none;
-		    position: fixed;
-		    top: 0;
-		    left: 0;
-		    width: 100%;
-		    height: 100%;
-		    background: rgba(0,0,0,0.8);
-		    z-index: 1000;
-		    justify-content: center;
-		    align-items: center;
-		}
-		
-		.koleksi-modal-content {
-		    background: white;
-		    border-radius: 15px;
-		    padding: 30px;
-		    max-width: 500px;
-		    width: 90%;
-		    max-height: 80vh;
-		    overflow-y: auto;
-		    position: relative;
-		}
-		
-		.koleksi-modal-close {
-		    position: absolute;
-		    top: 15px;
-		    right: 20px;
-		    background: none;
-		    border: none;
-		    font-size: 24px;
-		    cursor: pointer;
-		    color: #999;
-		}
-		
-		.koleksi-modal-close:hover {
-		    color: #333;
-		}
-		
-		.download-progress {
-		            display: none;
-		            margin-top: 10px;
-		}
-		
-		.progress-bar {
-		            width: 100%;
-		            height: 6px;
-		            background: #e9ecef;
-		            border-radius: 3px;
-		            overflow: hidden;
-		}
-		
-		.progress-fill {
-		            height: 100%;
-		            background: #34a853;
-		            width: 0%;
-		            transition: width 0.3s ease;
-		}
-		
-		@media (max-width: 768px) {
-		    .books-grid {
-		        grid-template-columns: 1fr;
-		    }
-		            
-		    .search-input {
-		        width: 100%;
-		     }
-		            
-		     .header h1 {
-		        font-size: 2rem;
-		     }
-		}
+        .search-box:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-cover-container {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-cover-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-cover-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .book-info {
+            padding: 20px;
+        }
+
+        .book-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f2937;
+            line-height: 1.4;
+        }
+
+        .book-author {
+            color: #6b7280;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .book-stats {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .rating .star {
+            color: #fbbf24;
+        }
+
+        .book-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-detail {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-detail:hover {
+            background: #2563eb;
+        }
+
+        .btn-download {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-download:hover {
+            background: #059669;
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #6b7280;
+            font-size: 1.2rem;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 16px;
+            }
+            
+            .container {
+                padding: 20px 16px;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-cover {
+            width: 120px;
+            height: 160px;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 	
 <section class="about">
@@ -266,26 +286,18 @@
     </div>
 
     <div class="search-container">
-  	<div class="search-box">
-    		<input type="text" id="searchInput" placeholder="🔍︎ Cari buku, penulis, atau genre..." onkeyup="handleSearchKeyUp(event)" autocomplete="off">
-    		<button onclick="resetSearch()" id="resetBtn">&times;</button>
-    		<ul id="suggestions"></ul>
-		
-  	</div>
+        <input type="text" class="search-box" id="searchInput" placeholder="Cari judul buku, penulis, atau kategori...">
     </div>
 
-    <div class="koleksi-books-grid" id="booksGrid">
+    <div class="books-grid" id="booksGrid">
         <!-- Book cards will be generated here -->
     </div>
-</section>
 
-   <!-- Modal for book details -->
-   <div class="koleksi-modal" id="bookModal">
-       <div class="koleksi-modal-content">
-            <button class="koleksi-modal-close" onclick="closeModal()">&times;</button>
-            <div id="modalContent"></div>
-       </div>
-   </div>
+    <div class="no-results" id="noResults" style="display: none;">
+        <p>📖 Tidak ada buku yang ditemukan</p>
+        <p style="font-size: 1rem; margin-top: 10px;">Coba kata kunci yang berbeda</p>
+    </div>
+</section>
 
     <script>
         // Data buku dari koleksi Fanny Fahira
@@ -296,14 +308,11 @@
                 author: "Andrea Hirata",
                 category: "Novel",
                 rating: 4.8,
-                pages: 202,
+                pages: 200,
                 size: "2.1 MB",
-                format: "PDF",
-                image: "https://upload.wikimedia.org/wikipedia/id/thumb/e/ec/Edensor_sampul.jpg/250px-Edensor_sampul.jpg",
+                coverUrl: "https://upload.wikimedia.org/wikipedia/id/thumb/e/ec/Edensor_sampul.jpg/250px-Edensor_sampul.jpg",
+		pdfUrl: "https://smpn32.semarangkota.go.id/e-perpus/repository/Edensor.pdf"
                 description: "Novel ketiga dari tetralogi Laskar Pelangi. Mengisahkan perjalanan Ikal dan Arai ke Eropa untuk menuntut ilmu.",
-                genre: "Novel",
-                year: "2007",
-                downloadUrl: "https://drive.google.com/file/d/1NcfQLKBptyDj4TtJ3hMMK2FeUJyjLbeL/view"
             },
             {
                 id: 2,
@@ -313,12 +322,9 @@
                 rating: 4.9,
                 pages: 260,
                 size: "1.8 MB",
-                format: "PDF",
-                image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1471093744i/31438243.jpg",
+                coverUrl: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1471093744i/31438243.jpg",
+		pdfUrl: "https://drive.google.com/file/d/1WFZpvbEd_HiKWryhuH6Zmj8gPmQuTne3/view"
                 description: "Kumpulan puisi tentang cinta, kehilangan, dan perjuangan hidup yang ditulis dengan bahasa yang indah.",
-                genre: "Novel",
-                year: "2016",
-                downloadUrl: "https://drive.google.com/file/d/1WFZpvbEd_HiKWryhuH6Zmj8gPmQuTne3/view"
             },
             {
                 id: 3,
@@ -328,12 +334,9 @@
                 rating: 4.7,
                 pages: 256,
                 size: "2.5 MB",
-                format: "PDF",
-                image: "https://balitbangdiklat.kemenag.go.id/images/resensi/Langit.jpg",
+                coverUrl: "https://balitbangdiklat.kemenag.go.id/images/resensi/Langit.jpg",
+		pdfUrl: "https://drive.google.com/file/d/1_tKYVx8sDRHpa7X5yMeVSZWfYB2y7eCM/view"
                 description: "Kisah nyata tentang pengalaman hidup di Amerika dan perjuangan memahami Islam di tengah prasangka.",
-                genre: "Novel",
-                year: "2014",
-                downloadUrl: "https://drive.google.com/file/d/1_tKYVx8sDRHpa7X5yMeVSZWfYB2y7eCM/view"
             },
             {
                 id: 4,
@@ -343,12 +346,9 @@
                 rating: 4.6,
                 pages: 801,
                 size: "3.2 MB",
-                format: "PDF",
-                image: "https://www.gramedia.com/blog/content/images/2022/02/Dunia-Sophie.jpg",
+                coverUrl: "https://www.gramedia.com/blog/content/images/2022/02/Dunia-Sophie.jpg",
+                pdfUrl: "https://intanuzulis.home.blog/wp-content/uploads/2020/11/dunia-sophie-sebuah-novel-filsafat-1.pdf"
                 description: "Novel filosofi yang mengajarkan sejarah pemikiran dunia melalui petualangan gadis bernama Sophie.",
-                genre: "Filosofi",
-                year: "1991",
-                downloadUrl: "https://intanuzulis.home.blog/wp-content/uploads/2020/11/dunia-sophie-sebuah-novel-filsafat-1.pdf"
             },
             {
                 id: 5,
@@ -358,12 +358,9 @@
                 rating: 4.8,
                 pages: 249,
                 size: "2.3 MB",
-                format: "PDF",
-                image: "https://m.media-amazon.com/images/I/61TYJajU9-L.jpg",
+                coverUrl: "https://m.media-amazon.com/images/I/61TYJajU9-L.jpg",
+                pdfUrl: "https://drive.google.com/file/d/1Nyx29wyr5c65NDewJx-qRhRQ1ZPTuX6E/view?usp=sharing"
                 description: "Panduan praktis untuk menerapkan filosofi Stoik dalam kehidupan modern untuk mencapai ketenangan batin.",
-                genre: "Self-Help",
-                year: "2019",
-                downloadUrl: "https://drive.google.com/file/d/1Nyx29wyr5c65NDewJx-qRhRQ1ZPTuX6E/view?usp=sharing"
             },
             {
                 id: 6,
@@ -373,12 +370,9 @@
                 rating: 4.5,
                 pages: 102,
                 size: "1.5 MB",
-                format: "PDF",
-                image: "https://images.routledge.com/common/jackets/crclarge/978074943/9780749434922.jpg",
+                coverUrl: "https://images.routledge.com/common/jackets/crclarge/978074943/9780749434922.jpg",
+		pdfUrl: "https://eprints.unm.ac.id/9011/1/Buku%20Model%20Problem%20Based%20Learning_Watermark.pdf"
                 description: "Buku panduan untuk pendidik tentang implementasi model pembelajaran berbasis masalah di kelas.",
-                genre: "Text Book",
-                year: "2018",
-                downloadUrl: "https://eprints.unm.ac.id/9011/1/Buku%20Model%20Problem%20Based%20Learning_Watermark.pdf"
             },
             {
                 id: 7,
@@ -388,12 +382,9 @@
                 rating: 4.9,
                 pages: 320,
                 size: "2.8 MB",
-                format: "PDF",
-                image: "https://cdn.gramedia.com/uploads/items/9786020649320_the_midnight_library_cov.jpg",
+                coverUrl: "https://cdn.gramedia.com/uploads/items/9786020649320_the_midnight_library_cov.jpg",
+		pdfUrl: "https://icrrd.com/public/media/14-05-2021-102937The-Midnight%20-Library-Matt%20Haig.pdf"
                 description: "Novel tentang perpustakaan yang berisi kehidupan alternatif yang bisa dipilih oleh protagonis.",
-                genre: "Novel",
-                year: "2020",
-                downloadUrl: "https://icrrd.com/public/media/14-05-2021-102937The-Midnight%20-Library-Matt%20Haig.pdf"
             },
             {
                 id: 8,
@@ -403,115 +394,148 @@
                 rating: 4.6,
                 pages: 167,
                 size: "1.2 MB",
-                format: "PDF",
-                image: "https://online.anyflip.com/pulmh/eevs/files/large/5f05e70ab8663ab34bc42f45f6c10855.jpg?1687340366",
+                coverUrl: "https://online.anyflip.com/pulmh/eevs/files/large/5f05e70ab8663ab34bc42f45f6c10855.jpg?1687340366",
+		pdfUrl: "https://ia802206.us.archive.org/3/items/manga_Naruto_Hiden_Series/Naruto%20Hiden%20Series%20-%20Volume%2001%20-%20Kakashi%27s%20Story%20-%20Kakashi%20Hiden%20-%20Hyouten%20no%20Ikazuchi%20-%20Lightning%20in%20the%20Frozen%20Sky%20%5BVIZ%5D%5BCalibreV1DPC%5D.pdf"
                 description: "Novel spin-off dari series Naruto yang menceritakan kisah tersembunyi dari Kakashi Hatake.",
-                genre: "Novel",
-                year: "2015",
-                downloadUrl: "https://ia802206.us.archive.org/3/items/manga_Naruto_Hiden_Series/Naruto%20Hiden%20Series%20-%20Volume%2001%20-%20Kakashi%27s%20Story%20-%20Kakashi%20Hiden%20-%20Hyouten%20no%20Ikazuchi%20-%20Lightning%20in%20the%20Frozen%20Sky%20%5BVIZ%5D%5BCalibreV1DPC%5D.pdf"
             }
         ];
 
-        let filteredBooks = [...books];
-	
-	    filteredBooks.forEach(book => {
-	        const bookCard = document.createElement('div');
-	        bookCard.className = 'koleksi-book-card';
-	        bookCard.innerHTML = `
-	            <div class="koleksi-book-image">
-	                <img src="${book.image}" alt="${book.title}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999;font-size:14px;&quot;>${book.title} Cover</div>'">
-	            </div>
-	            <div class="koleksi-book-info">
-	                <h3 class="koleksi-book-title">${book.title}</h3>
-	                <p class="koleksi-book-author">${book.author}</p>
-	                <div class="koleksi-book-rating">
-	                    <span class="star">⭐</span>
-	                    <span class="rating-score">${book.rating}</span>
-	                </div>
-	                <div class="koleksi-book-meta">
-	                    <span>${book.pages} halaman</span>
-	                    <span>${book.size}</span>
-	                    <span class="koleksi-book-format">${book.format}</span>
-	                </div>
-	                <div class="koleksi-book-actions">
-	                    <button class="btn btn-detail" onclick="showBookDetail(${book.id})">
-	                        👁️ Detail
-	                    </button>
-	                    <button class="btn btn-download" onclick="downloadBook(${book.id})">
-	                        ⬇️ Download
-	                    </button>
-	                </div>
-	                <div class="download-progress" id="progress-${book.id}">
-	                    <div class="progress-bar">
-	                        <div class="progress-fill" id="progressFill-${book.id}"></div>
-	                    </div>
-	                </div>
-	            </div>
-	        `;
-	        grid.appendChild(bookCard);
-	    });
-	}
-	
-	function showBookDetail(bookId) {
-	    const book = books.find(b => b.id === bookId);
-	    const modal = document.getElementById('bookModal');
-	    const modalContent = document.getElementById('modalContent');
-	    
-	    modalContent.innerHTML = `
-	        <h2 style="margin-bottom: 20px; color: #333;">${book.title}</h2>
-	        <div style="margin-bottom: 15px;">
-	            <strong>Penulis:</strong> ${book.author}
-	        </div>
-	        <div style="margin-bottom: 15px;">
-	            <strong>Kategori:</strong> ${book.category}
-	        </div>
-	        <div style="margin-bottom: 15px;">
-	            <strong>Tahun Terbit:</strong> ${book.year}
-	        </div>
-	        <div style="margin-bottom: 15px;">
-	            <strong>Halaman:</strong> ${book.pages}
-	        </div>
-	        <div style="margin-bottom: 15px;">
-	            <strong>Ukuran File:</strong> ${book.size}
-	        </div>
-	        <div style="margin-bottom: 15px;">
-	            <strong>Format:</strong> ${book.format}
-	        </div>
-	        <div style="margin-bottom: 15px;">
-	            <strong>Rating:</strong> ⭐ ${book.rating}/5
-	        </div>
-	        <div style="margin-bottom: 20px;">
-	            <strong>Deskripsi:</strong>
-	            <p style="margin-top: 8px; line-height: 1.6; color: #555;">${book.description}</p>
-	        </div>
-	        <button class="btn btn-download" onclick="downloadBook(${book.id})" style="width: 100%;">
-	            ⬇️ Download Sekarang
-	        </button>
-	    `;
-	    
-	    modal.style.display = 'flex';
-	}
-	
-	function closeModal() {
-	    document.getElementById('bookModal').style.display = 'none';
-	}
-	
-	// Event listeners untuk modal
-	document.getElementById('bookModal').addEventListener('click', function(e) {
-	    if (e.target === this) {
-	        closeModal();
-	    }
-	});
+	let filteredBooks = [...books];
 
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
+        function renderBooks(booksToRender) {
+            const booksGrid = document.getElementById('booksGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (booksToRender.length === 0) {
+                booksGrid.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            
+            booksGrid.innerHTML = booksToRender.map(book => `
+                <div class="book-card fade-in">
+                    <div class="book-cover-container">
+                        <img src="${book.coverUrl}" alt="${book.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="book-cover-placeholder" style="display: none;">
+                            ${book.title}
+                        </div>
+                        <div class="category-badge">${book.category}</div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-author">${book.author}</p>
+                        <div class="book-stats">
+                            <div class="rating">
+                                <span class="star">⭐</span>
+                                <span>${book.rating}</span>
+                            </div>
+                            <span>${book.pages} halaman</span>
+                            <span>${book.size}</span>
+                            <span style="background: #ef4444; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">PDF</span>
+                        </div>
+                        <div class="book-actions">
+                            <button class="btn btn-detail" onclick="showDetail(${book.id})">
+                                🔍 Detail
+                            </button>
+                            <a href="${book.pdfUrl}" class="btn btn-download" target="_blank">
+                                ⬇️ Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showDetail(bookId) {
+            const book = books.find(b => b.id === bookId);
+            if (book) {
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                
+                const modalContent = document.createElement('div');
+                modalContent.className = 'modal-content fade-in';
+                
+                modalContent.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div class="modal-cover">
+                            <img src="${book.coverUrl}" alt="${book.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="book-cover-placeholder" style="display: none;">${book.title}</div>
+                        </div>
+                        <h2 style="color: #1f2937; margin-bottom: 8px; font-size: 1.5rem;">${book.title}</h2>
+                        <p style="color: #6b7280; margin-bottom: 12px;">${book.author}</p>
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; font-size: 0.875rem; color: #6b7280;">
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span style="color: #fbbf24;">⭐</span>
+                                <span>${book.rating}</span>
+                            </div>
+                            <span>${book.pages} halaman</span>
+                            <span>${book.size}</span>
+                        </div>
+                        <span style="background: rgba(113, 128, 150, 0.1); color: #4a5568; padding: 6px 12px; border-radius: 15px; font-size: 0.875rem; font-weight: 600;">${book.category}</span>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <h3 style="color: #1f2937; margin-bottom: 12px; font-size: 1.1rem;">📖 Deskripsi</h3>
+                        <p style="color: #4b5563; line-height: 1.6;">${book.description}</p>
+                    </div>
+                    
+                    <div style="display: flex; gap: 12px; justify-content: center;">
+                        <a href="${book.pdfUrl}" target="_blank" style="background: #10b981; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 6px;">⬇️ Download PDF</a>
+                        <button onclick="this.closest('.modal').remove()" style="background: #6b7280; color: white; padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600;">✕ Tutup</button>
+                    </div>
+                `;
+                
+                modal.appendChild(modalContent);
+                document.body.appendChild(modal);
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+                
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        modal.remove();
+                    }
+                });
+            }
+        }
+
+        function searchBooks(query) {
+            const searchTerm = query.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                filteredBooks = [...books];
+            } else {
+                filteredBooks = books.filter(book => 
+                    book.title.toLowerCase().includes(searchTerm) ||
+                    book.author.toLowerCase().includes(searchTerm) ||
+                    book.category.toLowerCase().includes(searchTerm) ||
+                    book.description.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            renderBooks(filteredBooks);
+        }
+
+        // Event listeners
+        const searchInput = document.getElementById('searchInput');
+        
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                searchBooks(e.target.value);
             }
         });
 
-        // Initial render
-        renderBooks();
+        searchInput.addEventListener('input', (e) => {
+            searchBooks(e.target.value);
+        });
+
+        // Initialize
+        renderBooks(books);
     </script>
 
 	
