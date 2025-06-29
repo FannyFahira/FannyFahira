@@ -413,13 +413,6 @@
         ];
 
         let filteredBooks = [...books];
-
-        function resetSearch() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('resetBtn').style.display = 'none';
-            filteredBooks = [...books];
-            renderBooks();
-        }
 	
 	    filteredBooks.forEach(book => {
 	        const bookCard = document.createElement('div');
