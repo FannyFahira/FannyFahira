@@ -42,27 +42,103 @@
     			</div>
   		</section>
 
+<style>
+	.koleksi-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .koleksi-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .koleksi-search {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .koleksi-search input {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+        .koleksi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .koleksi-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .koleksi-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .koleksi-info {
+            padding: 15px;
+        }
+        .koleksi-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .koleksi-author {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .koleksi-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .koleksi-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .koleksi-btn {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-detail {
+            background: #4a86e8;
+            color: white;
+        }
+        .btn-download {
+            background: #34a853;
+            color: white;
+        }
+</style>
 
-<section class="about">
-    <div class="container">
-        <h3>📖 Koleksi Buku Digital</h3>
-        <p align="center">Temukan buku dengan berbagai pilihan tema dan genre sesuai kebutuhan Anda</p>
-    </div>
-	
-    <div class="koleksi-search-container">
-        <input type="text" class="koleksi-search-box" id="searchInput" 
-              	placeholder="Cari judul buku, penulis, atau kategori...">
-    </div>
-
-    <div class="koleksi-books-grid" id="booksGrid">
-        <!-- Book cards will be generated here -->
-    </div>
-
-    <div class="koleksi-no-results" id="noResults" style="display: none;">
-        <p>📖 Tidak ada buku yang ditemukan</p>
-        <p>Coba kata kunci yang berbeda</p>
-    </div>
-</section>
+    <section class="koleksi-container">
+        <div class="koleksi-header">
+            <h2>📖 Koleksi Buku Digital</h2>
+            <p>Temukan buku dengan berbagai pilihan tema dan genre sesuai kebutuhan Anda</p>
+        </div>
+        
+        <div class="koleksi-search">
+            <input type="text" id="searchInput" placeholder="Cari judul buku, penulis, atau kategori...">
+        </div>
+        
+        <div class="koleksi-grid" id="booksGrid">
+            <!-- Buku akan muncul di sini -->
+        </div>
+        
+        <div id="noResults" style="display:none; text-align:center; padding:40px 0;">
+            <p>📖 Tidak ada buku yang ditemukan</p>
+            <p>Coba kata kunci yang berbeda</p>
+        </div>
+    </section>
 	
 <script>
         // Data buku dari koleksi Fanny Fahira
@@ -165,86 +241,58 @@
             }
         ];
 
-	let filteredBooks = [...books];
-
-    // Render books
-    function renderBooks(booksToRender) {
-        const booksGrid = document.getElementById('booksGrid');
-        const noResults = document.getElementById('noResults');
-        
-        if (booksToRender.length === 0) {
-            booksGrid.innerHTML = '';
-            noResults.style.display = 'block';
-            return;
+        // Fungsi render sederhana
+        function renderBooks(booksToRender) {
+            const grid = document.getElementById('booksGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (booksToRender.length === 0) {
+                grid.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            grid.innerHTML = booksToRender.map(book => `
+                <div class="koleksi-card">
+                    <img src="${book.coverUrl}" alt="${book.title}">
+                    <div class="koleksi-info">
+                        <h3 class="koleksi-title">${book.title}</h3>
+                        <p class="koleksi-author">${book.author}</p>
+                        <div class="koleksi-meta">
+                            <span>⭐ ${book.rating}</span>
+                            <span>${book.pages} hlm</span>
+                            <span>${book.size}</span>
+                        </div>
+                        <div class="koleksi-actions">
+                            <button class="koleksi-btn btn-detail">Detail</button>
+                            <a href="${book.pdfUrl}" class="koleksi-btn btn-download">Download</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
         }
-        
-        noResults.style.display = 'none';
-        
-        booksGrid.innerHTML = booksToRender.map(book => `
-            <div class="koleksi-book-card">
-                <div class="koleksi-book-cover">
-                    <img src="${book.coverUrl}" alt="${book.title}" 
-                         onerror="this.onerror=null;this.src='https://via.placeholder.com/200x300?text=No+Cover'">
-                </div>
-                <div class="koleksi-book-info">
-                    <h3 class="koleksi-book-title">${book.title}</h3>
-                    <p class="koleksi-book-author">${book.author}</p>
-                    <div class="koleksi-book-meta">
-                        <span>⭐ ${book.rating}</span>
-                        <span>${book.pages} hlm</span>
-                        <span>${book.size}</span>
-                    </div>
-                    <div class="koleksi-book-actions">
-                        <button class="koleksi-btn koleksi-btn-detail" 
-                                onclick="showBookDetail(${book.id})">
-                            🔍 Detail
-                        </button>
-                        <a href="${book.pdfUrl}" class="koleksi-btn koleksi-btn-download" 
-                           target="_blank">
-                            ⬇️ Download
-                        </a>
-                    </div>
-                </div>
-            </div>
-        `).join('');
-    }
 
-    // Search books
-    function searchBooks(query) {
-        const searchTerm = query.toLowerCase().trim();
-        let filteredBooks;
-        
-        if (!searchTerm) {
-            filteredBooks = [...books];
-        } else {
-            filteredBooks = books.filter(book => 
-                book.title.toLowerCase().includes(searchTerm) ||
-                book.author.toLowerCase().includes(searchTerm) ||
-                book.category.toLowerCase().includes(searchTerm)
+        // Fungsi pencarian sederhana
+        function searchBooks(query) {
+            const term = query.toLowerCase();
+            const filtered = books.filter(book => 
+                book.title.toLowerCase().includes(term) || 
+                book.author.toLowerCase().includes(term)
             );
+            renderBooks(filtered);
         }
-        
-        renderBooks(filteredBooks);
-    }
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-        renderBooks(books);
-        
-        // Search event listener
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            searchBooks(e.target.value);
+        // Inisialisasi
+        document.addEventListener('DOMContentLoaded', () => {
+            renderBooks(books);
+            
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                searchBooks(e.target.value);
+            });
         });
-    });
+    </script>
 
-    // Show book detail (simple version)
-    function showBookDetail(bookId) {
-        const book = books.find(b => b.id === bookId);
-        if (book) {
-            alert(`Judul: ${book.title}\nPenulis: ${book.author}\n\nDeskripsi:\n${book.description}`);
-        }
-    }
-</script>
 	
     <!-- footer -->
     <footer class="fannyfahira-footer">
