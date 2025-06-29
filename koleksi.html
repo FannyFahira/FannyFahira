@@ -414,33 +414,6 @@
 
         let filteredBooks = [...books];
 
-        function handleSearchKeyUp(event) {
-            if (event.key === 'Enter') {
-                filterBooks();
-            } else {
-                filterBooks();
-            }
-        }
-
-        function filterBooks() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const resetBtn = document.getElementById('resetBtn');
-            
-            if (searchTerm === '') {
-                resetBtn.style.display = 'none';
-                filteredBooks = [...books];
-            } else {
-                resetBtn.style.display = 'block';
-                filteredBooks = books.filter(book => 
-                    book.title.toLowerCase().includes(searchTerm) || 
-                    book.author.toLowerCase().includes(searchTerm) ||
-                    book.genre.toLowerCase().includes(searchTerm) ||
-                    book.category.toLowerCase().includes(searchTerm)
-                );
-            }
-            renderBooks();
-        }
-
         function resetSearch() {
             document.getElementById('searchInput').value = '';
             document.getElementById('resetBtn').style.display = 'none';
