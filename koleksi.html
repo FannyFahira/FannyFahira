@@ -502,13 +502,6 @@
 	function closeModal() {
 	    document.getElementById('bookModal').style.display = 'none';
 	}
-
-	function downloadBook(bookId) {
-            const book = books.find(b => b.id === bookId);
-            if (book && book.downloadUrl) {
-                window.open(book.downloadUrl, '_blank');
-            }
-        }
 	
 	// Event listeners untuk modal
 	document.getElementById('bookModal').addEventListener('click', function(e) {
