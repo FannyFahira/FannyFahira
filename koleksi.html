@@ -43,80 +43,325 @@
   		</section>
 
 <style>
-	.koleksi-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .koleksi-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
         .koleksi-search {
             display: flex;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 3rem;
         }
-        .koleksi-search input {
+
+        .koleksi-search-container {
+            position: relative;
             width: 100%;
             max-width: 500px;
-            padding: 12px 20px;
-            border: 2px solid #ddd;
-            border-radius: 25px;
-            font-size: 16px;
         }
+
+        .koleksi-search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .koleksi-search-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
         .koleksi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
-        .koleksi-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+        .koleksi-book-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .koleksi-card img {
+
+        .koleksi-book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .koleksi-book-cover {
             width: 100%;
             height: 200px;
-            object-fit: cover;
+            background: linear-gradient(45deg, #6b7ba8, #8495b8);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
-        .koleksi-info {
-            padding: 15px;
+
+        .koleksi-book-info h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
         }
-        .koleksi-title {
-            font-size: 18px;
-            margin-bottom: 5px;
+
+        .koleksi-book-author {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
         }
-        .koleksi-author {
-            color: #666;
-            margin-bottom: 10px;
+
+        .koleksi-book-genre {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
-        .koleksi-meta {
+
+        .koleksi-book-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .koleksi-book-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .koleksi-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            flex: 1;
+        }
+
+        .koleksi-btn-detail {
+            background: linear-gradient(45deg, #6b7ba8, #8495b8);
+            color: white;
+        }
+
+        .koleksi-btn-baca {
+            background: linear-gradient(45deg, #5a6a94, #6b7ba8);
+            color: white;
+        }
+
+        .koleksi-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Modal Detail Buku */
+        .koleksi-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .koleksi-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, rgba(107, 123, 168, 0.95), rgba(132, 149, 184, 0.95));
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .koleksi-modal-header {
             display: flex;
             justify-content: space-between;
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 15px;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
         }
-        .koleksi-actions {
-            display: flex;
-            gap: 10px;
+
+        .koleksi-modal-title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
         }
-        .koleksi-btn {
-            flex: 1;
-            padding: 8px;
+
+        .koleksi-modal-close {
+            background: none;
             border: none;
-            border-radius: 5px;
+            color: white;
+            font-size: 2rem;
             cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
-        .btn-detail {
-            background: #4a86e8;
+
+        .koleksi-modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .koleksi-modal-body {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .koleksi-modal-cover {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #5a6a94, #6b7ba8);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .koleksi-modal-info {
             color: white;
         }
-        .btn-download {
-            background: #34a853;
+
+        .koleksi-modal-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
             color: white;
+        }
+
+        .koleksi-info-item {
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+        }
+
+        .koleksi-info-label {
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.9);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .koleksi-info-value {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        .koleksi-modal-description {
+            grid-column: 1 / -1;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .koleksi-modal-description h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .koleksi-modal-description p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .koleksi-modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .koleksi-modal-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .koleksi-modal-btn-baca {
+            background: linear-gradient(45deg, #5a6a94, #6b7ba8);
+            color: white;
+        }
+
+        .koleksi-modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .koleksi-no-results {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            margin: 3rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .koleksi-nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .koleksi-menu {
+                gap: 1rem;
+            }
+
+            .koleksi-title h1 {
+                font-size: 2rem;
+            }
+
+            .koleksi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .koleksi-modal-body {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .koleksi-modal-cover {
+                margin: 0 auto;
+                max-width: 200px;
+            }
+
+            .koleksi-modal-actions {
+                flex-direction: column;
+            }
         }
 </style>
 
@@ -127,171 +372,266 @@
         </div>
         
         <div class="koleksi-search">
-            <input type="text" id="searchInput" placeholder="Cari judul buku, penulis, atau kategori...">
+            <div class="koleksi-search-container">
+                <input type="text" class="koleksi-search-input" placeholder="Cari judul buku, penulis, atau kategori..." id="koleksiSearchInput">
+            </div>
         </div>
-        
-        <div class="koleksi-grid" id="booksGrid">
-            <!-- Buku akan muncul di sini -->
+
+        <div class="koleksi-grid" id="koleksiGrid">
+            <!-- Koleksi buku akan dimuat di sini -->
         </div>
-        
-        <div id="noResults" style="display:none; text-align:center; padding:40px 0;">
-            <p>📖 Tidak ada buku yang ditemukan</p>
-            <p>Coba kata kunci yang berbeda</p>
+
+        <div class="koleksi-no-results" id="koleksiNoResults" style="display: none;">
+            Tidak ada buku yang ditemukan. Coba kata kunci lain.
         </div>
     </section>
+
+    <!-- Modal Detail Buku -->
+    <div class="koleksi-modal" id="koleksiModal">
+        <div class="koleksi-modal-content">
+            <div class="koleksi-modal-header">
+                <h2 class="koleksi-modal-title">Detail Buku</h2>
+                <button class="koleksi-modal-close" onclick="tutupModalDetail()">&times;</button>
+            </div>
+            <div class="koleksi-modal-body">
+                <div class="koleksi-modal-cover" id="koleksiModalCover"></div>
+                <div class="koleksi-modal-info">
+                    <h2 id="koleksiModalJudul"></h2>
+                    <div class="koleksi-info-item">
+                        <span class="koleksi-info-label">Penulis:</span>
+                        <span class="koleksi-info-value" id="koleksiModalPenulis"></span>
+                    </div>
+                    <div class="koleksi-info-item">
+                        <span class="koleksi-info-label">Genre:</span>
+                        <span class="koleksi-info-value" id="koleksiModalGenre"></span>
+                    </div>
+                    <div class="koleksi-info-item">
+                        <span class="koleksi-info-label">Status:</span>
+                        <span class="koleksi-info-value">Tersedia</span>
+                    </div>
+                    <div class="koleksi-info-item">
+                        <span class="koleksi-info-label">Format:</span>
+                        <span class="koleksi-info-value">PDF Digital</span>
+                    </div>
+                </div>
+                <div class="koleksi-modal-description">
+                    <h3>Deskripsi:</h3>
+                    <p id="koleksiModalDeskripsi"></p>
+                </div>
+            </div>
+            <div class="koleksi-modal-actions">
+                <button class="koleksi-modal-btn koleksi-modal-btn-baca" onclick="bacaBukuDariModal()">📖 Baca Sekarang</button>
+            </div>
+        </div>
+    </div>
 	
 <script>
         // Data buku dari koleksi Fanny Fahira
         const books = [
             {
                 id: 1,
-                title: "Edensor",
-                author: "Andrea Hirata",
-                category: "Novel",
-                rating: 4.8,
-                pages: 200,
-                size: "2.1 MB",
+                judul: "Edensor",
+                penulis: "Andrea Hirata",
+                genre: "Coming of Age, Adventure & Travel, Romance",
+		deskripsi: "Novel ketiga dari tetralogi Laskar Pelangi. Mengisahkan perjalanan Ikal dan Arai ke Eropa untuk menuntut ilmu.",
                 coverUrl: "https://upload.wikimedia.org/wikipedia/id/thumb/e/ec/Edensor_sampul.jpg/250px-Edensor_sampul.jpg",
 		pdfUrl: "https://smpn32.semarangkota.go.id/e-perpus/repository/Edensor.pdf"
-                description: "Novel ketiga dari tetralogi Laskar Pelangi. Mengisahkan perjalanan Ikal dan Arai ke Eropa untuk menuntut ilmu.",
             },
             {
                 id: 2,
-                title: "Pada Senja Yang Membawamu Pergi",
-                author: "Boy Chandra",
-                category: "Novel",
-                rating: 4.9,
-                pages: 260,
-                size: "1.8 MB",
+                judul: "Pada Senja Yang Membawamu Pergi",
+                penulis: "Boy Chandra",
+                genre: "Drama, Romance",
+		deskripsi: "Kumpulan puisi tentang cinta, kehilangan, dan perjuangan hidup yang ditulis dengan bahasa yang indah.",
                 coverUrl: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1471093744i/31438243.jpg",
 		pdfUrl: "https://drive.google.com/file/d/1WFZpvbEd_HiKWryhuH6Zmj8gPmQuTne3/view"
-                description: "Kumpulan puisi tentang cinta, kehilangan, dan perjuangan hidup yang ditulis dengan bahasa yang indah.",
             },
             {
                 id: 3,
-                title: "Bulan Terbelah di Langit Amerika",
-                author: "Hanum Salsabiela Rais dan Rangga Almahendra",
-                category: "Novel",
-                rating: 4.7,
-                pages: 256,
-                size: "2.5 MB",
+                judul: "Bulan Terbelah di Langit Amerika",
+                penulis: "Hanum Salsabiela Rais dan Rangga Almahendra",
+                genre: "adventure, action, drama",
+		deskripsi: "Kisah nyata tentang pengalaman hidup di Amerika dan perjuangan memahami Islam di tengah prasangka.",
                 coverUrl: "https://balitbangdiklat.kemenag.go.id/images/resensi/Langit.jpg",
 		pdfUrl: "https://drive.google.com/file/d/1_tKYVx8sDRHpa7X5yMeVSZWfYB2y7eCM/view"
-                description: "Kisah nyata tentang pengalaman hidup di Amerika dan perjuangan memahami Islam di tengah prasangka.",
             },
             {
                 id: 4,
-                title: "Dunia Sophie",
-                author: "Jostein Gaarder",
-                category: "Filosofi",
-                rating: 4.6,
-                pages: 801,
-                size: "3.2 MB",
+                judul: "Dunia Sophie",
+                penulis: "Jostein Gaarder",
+                genre: "Filosofi",
+		deskripsi: "Novel filosofi yang mengajarkan sejarah pemikiran dunia melalui petualangan gadis bernama Sophie.",
                 coverUrl: "https://www.gramedia.com/blog/content/images/2022/02/Dunia-Sophie.jpg",
                 pdfUrl: "https://intanuzulis.home.blog/wp-content/uploads/2020/11/dunia-sophie-sebuah-novel-filsafat-1.pdf"
-                description: "Novel filosofi yang mengajarkan sejarah pemikiran dunia melalui petualangan gadis bernama Sophie.",
+                deskripsi: "Novel filosofi yang mengajarkan sejarah pemikiran dunia melalui petualangan gadis bernama Sophie.",
             },
             {
                 id: 5,
-                title: "The Little Book of Stoicism ; Timeless Wisdom to Gain Resilience, Confidence, and Calmness",
-                author: "Jonas Salzgeber",
-                category: "Self-Help",
-                rating: 4.8,
-                pages: 249,
-                size: "2.3 MB",
+                judul: "The Little Book of Stoicism ; Timeless Wisdom to Gain Resilience, Confidence, and Calmness",
+                penulis: "Jonas Salzgeber",
+                genre: "Self-Help",
+		deskripsi: "Panduan praktis untuk menerapkan filosofi Stoik dalam kehidupan modern untuk mencapai ketenangan batin.",
                 coverUrl: "https://m.media-amazon.com/images/I/61TYJajU9-L.jpg",
                 pdfUrl: "https://drive.google.com/file/d/1Nyx29wyr5c65NDewJx-qRhRQ1ZPTuX6E/view?usp=sharing"
-                description: "Panduan praktis untuk menerapkan filosofi Stoik dalam kehidupan modern untuk mencapai ketenangan batin.",
             },
             {
                 id: 6,
-                title: "Model Problem Based Learning",
-                author: "Syamsidah dan Hamidah Suryani",
-                category: "Text Book",
-                rating: 4.5,
-                pages: 102,
-                size: "1.5 MB",
+                judul: "Model Problem Based Learning",
+                penulis: "Syamsidah dan Hamidah Suryani",
+                genre: "Text Book",
+		deskripsi: "Buku panduan untuk pendidik tentang implementasi model pembelajaran berbasis masalah di kelas.",
                 coverUrl: "https://images.routledge.com/common/jackets/crclarge/978074943/9780749434922.jpg",
 		pdfUrl: "https://eprints.unm.ac.id/9011/1/Buku%20Model%20Problem%20Based%20Learning_Watermark.pdf"
-                description: "Buku panduan untuk pendidik tentang implementasi model pembelajaran berbasis masalah di kelas.",
-            },
+	    },
             {
                 id: 7,
-                title: "The Midnight Library",
-                author: "Matt Haig",
-                category: "Novel",
-                rating: 4.9,
-                pages: 320,
-                size: "2.8 MB",
+                judul: "The Midnight Library",
+                penulis: "Matt Haig",
+                genre: "Drama, Fantasy, Psychological",
+		deskripsi: "Novel tentang perpustakaan yang berisi kehidupan alternatif yang bisa dipilih oleh protagonis.",
                 coverUrl: "https://cdn.gramedia.com/uploads/items/9786020649320_the_midnight_library_cov.jpg",
 		pdfUrl: "https://icrrd.com/public/media/14-05-2021-102937The-Midnight%20-Library-Matt%20Haig.pdf"
-                description: "Novel tentang perpustakaan yang berisi kehidupan alternatif yang bisa dipilih oleh protagonis.",
             },
             {
                 id: 8,
-                title: "Naruto Hidden Series: Kakashi Hidden - Hyouten no Ikazuchi",
-                author: "Masashi Kishimoto",
-                category: "Novel",
-                rating: 4.6,
-                pages: 167,
-                size: "1.2 MB",
+                judul: "Naruto Hidden Series: Kakashi Hidden - Hyouten no Ikazuchi",
+                penulis: "Masashi Kishimoto",
+                genre: "Fiksi, Ninja",
+		deskripsi: "Novel spin-off dari series Naruto yang menceritakan kisah tersembunyi dari Kakashi Hatake.",
                 coverUrl: "https://online.anyflip.com/pulmh/eevs/files/large/5f05e70ab8663ab34bc42f45f6c10855.jpg?1687340366",
 		pdfUrl: "https://ia802206.us.archive.org/3/items/manga_Naruto_Hiden_Series/Naruto%20Hiden%20Series%20-%20Volume%2001%20-%20Kakashi%27s%20Story%20-%20Kakashi%20Hiden%20-%20Hyouten%20no%20Ikazuchi%20-%20Lightning%20in%20the%20Frozen%20Sky%20%5BVIZ%5D%5BCalibreV1DPC%5D.pdf"
-                description: "Novel spin-off dari series Naruto yang menceritakan kisah tersembunyi dari Kakashi Hatake.",
             }
         ];
 
-        // Fungsi render sederhana
-        function renderBooks(booksToRender) {
-            const grid = document.getElementById('booksGrid');
-            const noResults = document.getElementById('noResults');
-            
-            if (booksToRender.length === 0) {
-                grid.innerHTML = '';
-                noResults.style.display = 'block';
-                return;
-            }
-            
-            noResults.style.display = 'none';
-            grid.innerHTML = booksToRender.map(book => `
-                <div class="koleksi-card">
-                    <img src="${book.coverUrl}" alt="${book.title}">
-                    <div class="koleksi-info">
-                        <h3 class="koleksi-title">${book.title}</h3>
-                        <p class="koleksi-author">${book.author}</p>
-                        <div class="koleksi-meta">
-                            <span>⭐ ${book.rating}</span>
-                            <span>${book.pages} hlm</span>
-                            <span>${book.size}</span>
-                        </div>
-                        <div class="koleksi-actions">
-                            <button class="koleksi-btn btn-detail">Detail</button>
-                            <a href="${book.pdfUrl}" class="koleksi-btn btn-download">Download</a>
+	// Variabel untuk menyimpan buku yang sedang dipilih
+        let bukuTerpilih = null;
+
+        // Fungsi untuk membuat kartu buku
+        function buatKoleksiBookCard(buku) {
+            return `
+                <div class="koleksi-book-card">
+                    <div class="koleksi-book-cover">${buku.cover}</div>
+                    <div class="koleksi-book-info">
+                        <h3>${buku.judul}</h3>
+                        <div class="koleksi-book-author">Penulis: ${buku.penulis}</div>
+                        <div class="koleksi-book-genre">Genre: ${buku.genre}</div>
+                        <div class="koleksi-book-description">${buku.deskripsi}</div>
+                        <div class="koleksi-book-actions">
+                            <button class="koleksi-btn koleksi-btn-detail" onclick="lihatDetailBuku(${buku.id})">Lihat Detail</button>
+                            <button class="koleksi-btn koleksi-btn-baca" onclick="bacaBuku(${buku.id})">Baca Sekarang</button>
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `;
         }
 
-        // Fungsi pencarian sederhana
-        function searchBooks(query) {
-            const term = query.toLowerCase();
-            const filtered = books.filter(book => 
-                book.title.toLowerCase().includes(term) || 
-                book.author.toLowerCase().includes(term)
-            );
-            renderBooks(filtered);
-        }
-
-        // Inisialisasi
-        document.addEventListener('DOMContentLoaded', () => {
-            renderBooks(books);
+        // Fungsi untuk menampilkan koleksi buku
+        function tampilkanKoleksiBuku(daftarBuku) {
+            const koleksiGrid = document.getElementById('koleksiGrid');
+            const koleksiNoResults = document.getElementById('koleksiNoResults');
             
-            document.getElementById('searchInput').addEventListener('input', (e) => {
-                searchBooks(e.target.value);
-            });
+            if (daftarBuku.length === 0) {
+                koleksiGrid.innerHTML = '';
+                koleksiNoResults.style.display = 'block';
+            } else {
+                koleksiGrid.innerHTML = daftarBuku.map(buku => buatKoleksiBookCard(buku)).join('');
+                koleksiNoResults.style.display = 'none';
+            }
+        }
+
+        // Fungsi pencarian koleksi
+        function cariKoleksiBuku(kataCari) {
+            const hasil = koleksiBuku.filter(buku => 
+                buku.judul.toLowerCase().includes(kataCari.toLowerCase()) ||
+                buku.penulis.toLowerCase().includes(kataCari.toLowerCase()) ||
+                buku.genre.toLowerCase().includes(kataCari.toLowerCase()) ||
+                buku.deskripsi.toLowerCase().includes(kataCari.toLowerCase())
+            );
+            tampilkanKoleksiBuku(hasil);
+        }
+
+        // Fungsi untuk melihat detail buku
+        function lihatDetailBuku(id) {
+            const buku = koleksiBuku.find(b => b.id === id);
+            if (buku) {
+                bukuTerpilih = buku;
+                
+                // Isi konten modal
+                document.getElementById('koleksiModalJudul').textContent = buku.judul;
+                document.getElementById('koleksiModalPenulis').textContent = buku.penulis;
+                document.getElementById('koleksiModalGenre').textContent = buku.genre;
+                document.getElementById('koleksiModalDeskripsi').textContent = buku.deskripsi;
+                document.getElementById('koleksiModalCover').textContent = buku.coverUrl;
+                
+                // Tampilkan modal
+                document.getElementById('koleksiModal').style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+        }
+
+        // Fungsi untuk menutup modal detail
+        function tutupModalDetail() {
+            document.getElementById('koleksiModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Allow scrolling
+            bukuTerpilih = null;
+        }
+
+        // Fungsi untuk membaca buku dari modal
+        function bacaBukuDariModal() {
+            if (bukuTerpilih) {
+                alert(`Membuka "${bukuTerpilih.judul}" untuk dibaca...\n\n[Fitur pembaca buku akan segera hadir]`);
+                tutupModalDetail();
+            }
+        }
+
+        // Fungsi untuk membaca buku
+        function bacaBuku(id) {
+            const buku = koleksiBuku.find(b => b.id === id);
+            if (buku) {
+                alert(`Membuka "${buku.judul}" untuk dibaca...\n\n[Fitur pembaca buku akan segera hadir]`);
+            }
+        }
+
+        // Event listener untuk pencarian
+        document.getElementById('koleksiSearchInput').addEventListener('input', function(e) {
+            const kataCari = e.target.value.trim();
+            if (kataCari === '') {
+                tampilkanKoleksiBuku(koleksiBuku);
+            } else {
+                cariKoleksiBuku(kataCari);
+            }
         });
-    </script>
+
+        // Event listener untuk menutup modal dengan ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('koleksiModal').style.display === 'block') {
+                tutupModalDetail();
+            }
+        });
+
+        // Event listener untuk menutup modal dengan klik di luar
+        document.getElementById('koleksiModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                tutupModalDetail();
+            }
+        });
+
+        // Inisialisasi - tampilkan semua koleksi buku
+        tampilkanKoleksiBuku(koleksiBuku);
+
+        // Efek hover untuk kartu buku
+        document.addEventListener('mouseover', function(e) {
+            if (e.target.closest('.koleksi-book-card')) {
+                e.target.closest('.koleksi-book-card').style.transform = 'translateY(-10px) scale(1.02)';
+            }
+        });
+
+        document.addEventListener('mouseout', function(e) {
+            if (e.target.closest('.koleksi-book-card')) {
+                e.target.closest('.koleksi-book-card').style.transform = 'translateY(0) scale(1)';
+            }
+        });
+</script>
 
 	
     <!-- footer -->
